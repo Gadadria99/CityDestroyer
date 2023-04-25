@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
+    public KeyCode runKey = KeyCode.LeftShift;
 
     [Header("Ground Check")]
     public float playerHeight;
@@ -57,17 +58,21 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.drag = 0;
         }
+
         MyInput();
     }
 
     private void FixedUpdate()
     {
+
         MovePlayer();
     }
 
 
     private void MyInput()
     {
+        // set up variables for directional movement
+
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
@@ -83,6 +88,8 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
+
+
         moveDirection = orientation.forward * verticalInput + orientation.right * horizontalInput;
 
         if(grounded)
@@ -90,6 +97,8 @@ public class PlayerMovement : MonoBehaviour
 
         else if(!grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
+        
+
     }
 
     private void jump()
