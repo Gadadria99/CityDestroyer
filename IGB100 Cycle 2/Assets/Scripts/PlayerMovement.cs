@@ -162,7 +162,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //running
-        if(grounded && Input.GetKey(runKey))
+        else if(grounded && Input.GetKey(runKey))
         {
             state = movementState.running;
             moveSpeed = runSpeed;
@@ -178,7 +178,7 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             state = movementState.air;
-
+            rb.useGravity = true;
         }
     }
 

@@ -10,13 +10,18 @@ public class WallRunning : MonoBehaviour
     public LayerMask WhatGround;
     public float wallRunForce;
     public float maxWallRunTime;
-    public float wallRunTimer;
+    public float wallClimbSpeed;
     
 
 
     [Header("Input")]
     private float horizontalInput;
     private float verticalInput;
+    public KeyCode upRun = KeyCode.LeftShift;
+    public KeyCode downRun = KeyCode.RightAlt;
+    private bool upRunning;
+    private bool downRunning;
+
 
 
     [Header("Detection")]
@@ -77,6 +82,9 @@ public class WallRunning : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
+        upRunning = Input.GetKey(upRun);
+        downRunning = Input.GetKey(downRun);
+
         if ((wallLeft || wallRight) && verticalInput > 0 && AboveGround())
         {
             //start wallrun
@@ -118,9 +126,25 @@ public class WallRunning : MonoBehaviour
 
         Vector3 wallForward = Vector3.Cross(wallNormal, transform.up);
 
+        if((orientation.forward - wallForward).magnitude > (orientation.forward - -wallForward).magnitude)
+            wallForward = -wallForward;
+
+        //wall climb/ descend movement
+
+        if (upRunning)
+            rb.velocity = new Vector3(rb.velocity.x, wallClimbSpeed, rb.velocity.z);
+
+        if (downRunning)
+            rb.velocity = new Vector3(rb.velocity.x, -wallClimbSpeed, rb.velocity.z);
+
         //forward movement
 
         rb.AddForce(wallForward * wallRunForce, ForceMode.Force);
+
+        //push player to wall
+        if(!(wallLeft && horizontalInput > 0) && !(wallRight && horizontalInput < 0))
+        rb.AddForce(-wallNormal * 100, ForceMode.Force);
+
     }
 
 }
