@@ -18,7 +18,7 @@ public class WallRunning : MonoBehaviour
     private float horizontalInput;
     private float verticalInput;
     public KeyCode upRun = KeyCode.LeftShift;
-    public KeyCode downRun = KeyCode.RightAlt;
+    public KeyCode downRun = KeyCode.LeftAlt;
     private bool upRunning;
     private bool downRunning;
 
@@ -35,6 +35,8 @@ public class WallRunning : MonoBehaviour
     public Transform orientation;
     private PlayerMovement pm;
     private Rigidbody rb;
+    //must be set to same value as playerHeight in pm script
+    public float playerHeight;
 
 
 
@@ -43,20 +45,21 @@ public class WallRunning : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         pm = GetComponent<PlayerMovement>();
-
         
-    }
+
+}
 
     // Update is called once per frame
     void Update()
     {
         CheckForWall();
         StateMachine();
+
     }
 
     private void FixedUpdate()
     {
-        if(pm.wallrunning)
+        if (pm.wallrunning)
         {
             WallRunningMovement();
         }
@@ -71,7 +74,9 @@ public class WallRunning : MonoBehaviour
 
     private bool AboveGround()
     {
-        return !Physics.Raycast(transform.position, Vector3.down, minJumpHeight, WhatGround);
+        
+        return !Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, WhatGround);
+
     }
 
     private void StateMachine()
@@ -89,18 +94,19 @@ public class WallRunning : MonoBehaviour
         {
             //start wallrun
 
-            if(!pm.wallrunning)
-            {
+            if (!pm.wallrunning)
                 StartWallRun();
-            }
-            else
+            
+        }
+
+        else
+        { 
+            if(pm.wallrunning)
             {
-                if(pm.wallrunning)
-                {
-                    StopWallRun();
-                }
+                StopWallRun();
             }
         }
+        
     }
 
     private void StartWallRun()
