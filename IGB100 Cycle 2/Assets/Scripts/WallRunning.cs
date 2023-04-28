@@ -11,6 +11,9 @@ public class WallRunning : MonoBehaviour
     public float wallRunForce;
     public float maxWallRunTime;
     public float wallClimbSpeed;
+    public float wallJumpForce;
+    public float wallJumpSideForce;
+
     
 
 
@@ -21,7 +24,7 @@ public class WallRunning : MonoBehaviour
     public KeyCode downRun = KeyCode.LeftAlt;
     private bool upRunning;
     private bool downRunning;
-
+    public KeyCode jumpKey = KeyCode.Space;
 
 
     [Header("Detection")]
@@ -96,7 +99,9 @@ public class WallRunning : MonoBehaviour
 
             if (!pm.wallrunning)
                 StartWallRun();
-            
+
+            if (Input.GetKeyDown(jumpKey)) 
+                WallJump();
         }
 
         else
@@ -151,6 +156,19 @@ public class WallRunning : MonoBehaviour
         if(!(wallLeft && horizontalInput > 0) && !(wallRight && horizontalInput < 0))
         rb.AddForce(-wallNormal * 100, ForceMode.Force);
 
+    }
+
+    private void WallJump()
+    {
+        Vector3 wallNormal = wallRight ? rightWallHit.normal : leftWallHit.normal;
+
+        Vector3 forceToApply = transform.up * wallJumpForce + wallNormal * wallJumpSideForce;
+
+        
+        //reset y velocity
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        //add force
+        rb.AddForce(forceToApply, ForceMode.Impulse);
     }
 
 }
