@@ -58,7 +58,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //check if on ground plane
 
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, WhatGround);
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.75f + 0.2f, WhatGround);
 
         //drag 
 

@@ -19,10 +19,7 @@ public class Enemy : MonoBehaviour
 
     public GameObject deathEffect;
     
-    // float RightclickActive = 12;
-    // float RightclickThreshold = 12;
-    //public Vector3 PlayerLocation;
-
+ 
 
 
 
@@ -51,44 +48,9 @@ public class Enemy : MonoBehaviour
     void Update()
     {
 
-       // if (GameManager.instance.player && (RightclickActive < 12))
-        //{
-            // transform.LookAt(GameManager.instance.player.transform.position);
-            //transform.position += transform.forward * moveSpeed * Time.deltaTime;
 
-            //get the Input from Horizontal axis
-
-
-            
-           // PlayerLocation = (GameObject.FindGameObjectsWithTag("Player")[0].transform.position);
-           
-            
-        //}
-        
-       // checkRightClick();
         Movement();
     }
-
-
-
-
-
-
-   // void checkRightClick()
-   // {
-   //     if (Input.GetKey(KeyCode.Mouse1))
-    //    {
-    //        RightclickActive = 0;
-    //        RightclickActive += Time.deltaTime;
-    //    }
-   //     else
-    //    {
-    //        RightclickActive += Time.deltaTime;
-   //     }
-            
-
-   // }
-
 
 
 
@@ -109,35 +71,11 @@ public class Enemy : MonoBehaviour
             agent.destination = target.transform.position;
         }
 
-       // if (GameManager.instance.player && (RightclickActive < 12))
-       // {
-            // transform.LookAt(GameManager.instance.player.transform.position);
-            //transform.position += transform.forward * moveSpeed * Time.deltaTime;
-
-            //get the Input from Horizontal axis
-            
-        //    Translate();
-            
-            //get the Input from Vertical axis
-            //float verticalInput = Input.GetAxis("Vertical");
-            
-      //  }
-       // else
-            
-            // alter for 3d level//
-        //    transform.position += transform.forward * moveSpeed * Time.deltaTime;
-            
 
 
     }
 
     
-
-   // private void Translate()
-   // {
-   //     float dist = Vector3.Distance(PlayerLocation, transform.position);
-   //     transform.position += (PlayerLocation - transform.position) * (moveSpeed2 / (dist / 10)) * Time.deltaTime;
-   // }
 
 
 
