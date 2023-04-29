@@ -10,6 +10,10 @@ public class GameManager : MonoBehaviour {
 
     public GameObject player;
 
+    public float time;
+    public float maxTime = 15;
+
+
     // Awake Checks - Singleton setup
     void Awake() {
 
@@ -32,6 +36,6 @@ public class GameManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-
+        time += Time.deltaTime;
 	}
 }
