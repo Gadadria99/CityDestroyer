@@ -8,27 +8,19 @@ public class GrowthController : MonoBehaviour
     public float maxEnergy = 100f;
     public GameObject Player;
 
-    //public bool cableFront;
-    //new LayerMask WhatCable;
-    //private RaycastHit CableHit;
-    //public float cableCheckDistance;
-    //private Rigidbody rb;
-    //public Transform orientation;
-    //public KeyCode Energize = KeyCode.R;
-    
+
 
     // Start is called before the first frame update
     void Start()
     {
-        //rb = GetComponent<Rigidbody>();
+        
     }
 
     // Update is called once per frame
     void Update()
     {
         setScale();
-         //CheckForCable();
-         //Recharge();
+
         
     }
 
@@ -72,23 +64,6 @@ public class GrowthController : MonoBehaviour
         else
             energyLevel = maxEnergy;
     }
-
-
-   // private void Recharge()
-   // {
-   //     if (cableFront == true)
-   //     {
-   //         energyLevel = energyLevel * 2;
-   //     }
-  //  }
-
-  //  private void CheckForCable()
-   // {
-   //     cableFront = Physics.Raycast(transform.position, orientation.forward, out CableHit, cableCheckDistance, WhatCable);
-
-
-  //  }
-
 
 
 }  
