@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     public float moveSpeed2 = 0.2f;
     public float health = 100.0f;
 
-    public float damage = 25.0f;
+    public float damage = 1f;
     private float damageRate = 0.2f;
     private float damageTime;
 

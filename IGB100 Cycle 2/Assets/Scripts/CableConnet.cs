@@ -23,7 +23,7 @@ public class CableConnet : MonoBehaviour
     {
         if (other.transform.tag == "Player")
         {
-            other.transform.GetComponent<GrowthController>().Recharge(90);
+            other.transform.GetComponent<GrowthController>().Recharge();
             
         }
     }
