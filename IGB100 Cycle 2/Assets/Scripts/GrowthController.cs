@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class GrowthController : MonoBehaviour
 {
-    public float energyLevel = 50f;
+    public float energyLevel = 0f;
     public float maxEnergy = 100f;
     public GameObject Player;
     //public GameObject playerObj;
@@ -45,18 +45,18 @@ public class GrowthController : MonoBehaviour
 
 
 
-        else if (energyLevel < 80)
+/*        else if (energyLevel < 80)
         {
             Player.transform.localScale = new Vector3(1f, 1f, 1f);
-        }
+        }*/
 
 
 
         else
         {
-            if (energyLevel >= 80)
+            if (energyLevel >= 100)
             {
-                Player.transform.localScale = new Vector3(35f, 35f, 35f);
+                Player.transform.localScale = new Vector3(25f, 40f, 25f);
 
                 // playerObj.transform.GetComponent<GrowthController>().Recharge(90);
                 col.material.dynamicFriction = dynFriction;
