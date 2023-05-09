@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class CollisionDetection : MonoBehaviour
 {
-    public Punch p;
+    public PlayerPunch pp;
     //public GameObject HitParticle;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Building" && p.isAttking)
+        if (other.tag == "Building" && pp.isAttking)
         {
             other.GetComponent<Animator>().SetTrigger("Hit");
             //Instantiate(HitParticle, new Vector3(other.transform.position.x,

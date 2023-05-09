@@ -9,6 +9,7 @@ public class PlayerUI : MonoBehaviour
     public float energy;
     public GrowthController script;
     public TMPro.TextMeshProUGUI nrg;
+    public TMPro.TextMeshProUGUI hp;
 
     // Start is called before the first frame update
     void Start()
@@ -21,5 +22,7 @@ public class PlayerUI : MonoBehaviour
     {
         energy = script.energyLevel;
         nrg.text = "Energy: " + energy.ToString("F0");
+
+        hp.text = "Health: " + health.ToString("F0");
     }
 }

@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour
         try
         {
             target = (GameObject.FindGameObjectWithTag("Player"));
+            
         }
         catch
         {
@@ -47,9 +48,11 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-
-        Movement();
+    print(Vector3.Distance(gameObject.transform.position, target.transform.position));
+        if (Vector3.Distance(gameObject.transform.position, target.transform.position) > 200) {
+            
+            Movement(); }
+        else { agent.destination = gameObject.transform.position; }
     }
 
 
@@ -68,7 +71,11 @@ public class Enemy : MonoBehaviour
 
         if(target)
         {
-            agent.destination = target.transform.position;
+           
+            {
+                agent.destination = target.transform.position;
+            }
+             
         }
 
 

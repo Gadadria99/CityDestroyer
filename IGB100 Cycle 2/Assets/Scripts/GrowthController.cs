@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class GrowthController : MonoBehaviour
 {
-    public float energyLevel = 0f;
+    public float energyLevel = 95f;
     public float maxEnergy = 100f;
+    private bool goUp = false;
     public GameObject Player;
-    //public GameObject playerObj;
+    public GameObject PlayerCam;
+    public GameObject Titan;
+    public GameObject TitanCam;
+    public bool Grow = false;
+   // public GameObject playerObj;
 
     public float dynFriction;
     public float statFriction;
@@ -25,9 +30,20 @@ public class GrowthController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        setScale();
+        //setScale();
 
-        
+        if(energyLevel >= 100 && !Grow)
+        {
+            Grow = true;
+            Player.SetActive(false);
+            PlayerCam.SetActive(false);
+
+            Titan.SetActive(true);
+            TitanCam.SetActive(true);
+
+        }
+
+
     }
 
 
@@ -43,24 +59,20 @@ public class GrowthController : MonoBehaviour
             Player.transform.localScale = new Vector3(1f, 1f, 1f);
         }
 
-
-
-/*        else if (energyLevel < 80)
-        {
-            Player.transform.localScale = new Vector3(1f, 1f, 1f);
-        }*/
-
-
-
         else
         {
             if (energyLevel >= 100)
             {
-                Player.transform.localScale = new Vector3(25f, 40f, 25f);
+                if (!goUp)
+                {
+                    Player.transform.localPosition = new Vector3(Player.transform.localPosition.x, 10, Player.transform.localPosition.z);
+                    goUp = true;
+                }
+                Player.transform.localScale = new Vector3(20f, 40f, 20f);
 
-                // playerObj.transform.GetComponent<GrowthController>().Recharge(90);
-                col.material.dynamicFriction = dynFriction;
-                col.material.staticFriction = statFriction;
+                //playerObj.transform.GetComponent<GrowthController>().Recharge(90);
+                //col.material.dynamicFriction = dynFriction;
+                //col.material.staticFriction = statFriction;
             }
 
         }

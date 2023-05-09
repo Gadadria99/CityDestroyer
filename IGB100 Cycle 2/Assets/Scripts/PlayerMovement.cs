@@ -41,9 +41,10 @@ public class PlayerMovement : MonoBehaviour
     public Transform orientation;
     float horizontalInput;
     float verticalInput;
+    public float fallMultiplier = 20f;
+    Rigidbody rb;
 
     Vector3 moveDirection;
-    Rigidbody rb;
 
     // Start is called before the first frame update
     void Start()
@@ -51,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         readyToJump = true;
+        Physics.gravity = new Vector3(0, -40.0F, 0);
 
     }
 
@@ -58,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
     {
         //check if on ground plane
 
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, WhatGround);
+        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 20.0f, WhatGround);
 
         //drag 
 
@@ -81,6 +83,11 @@ public class PlayerMovement : MonoBehaviour
     {
 
         MovePlayer();
+
+        if (rb.velocity.y < 0)
+        {
+            rb.velocity += Vector3.up * Physics.gravity.y * fallMultiplier * Time.deltaTime;
+        }
     }
 
 
