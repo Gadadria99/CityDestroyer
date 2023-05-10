@@ -5,9 +5,15 @@ using UnityEngine;
 public class PlayerPunch : MonoBehaviour
 {
     public GameObject FistR;
+    public GameObject FistL;
+    public GameObject Cannon;
+
+    public bool isShooting = false;
     public bool CanAttk = true;
-    public float AttkCD = 0.5f;
+    public bool Swap = false;
     public bool isAttking = false;
+    public bool cannonOut = false;
+    public float AttkCD = 0.5f;
 
     public static PlayerPunch body;
 
@@ -18,12 +24,26 @@ public class PlayerPunch : MonoBehaviour
     
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(0))
         {
             if (CanAttk)
             {
                 PunchAtk();
             }
+        }
+        if (Input.GetMouseButton(1))
+        { 
+            Shoot();
+        }
+        if (Input.GetMouseButtonUp(1))
+        {
+            isShooting = false;
+
+            Animator anim = FistL.GetComponent<Animator>();
+            anim.SetTrigger("Draw");
+
+            Animator anim2 = FistL.GetComponent<Animator>();
+            anim2.SetTrigger("Return");
         }
     }
 
@@ -31,9 +51,49 @@ public class PlayerPunch : MonoBehaviour
     {
         isAttking = true;
         CanAttk = false;
-        Animator anim = FistR.GetComponent<Animator>();
-        anim.SetTrigger("Attk");
-        StartCoroutine(ResetAtkCD());
+
+        if (Swap == false)
+        {
+            Animator anim = FistR.GetComponent<Animator>();
+            anim.SetTrigger("Attk");
+            StartCoroutine(ResetAtkCD());
+            Swap = true;
+        }
+        else if (Swap == true) 
+        {
+            Animator anim = FistL.GetComponent<Animator>();
+            anim.SetTrigger("Attk2");
+            StartCoroutine(ResetAtkCD());
+            Swap = false;
+        }
+    }
+
+    public void Shoot() 
+    {
+        isShooting = true;
+
+        Animator anim = FistL.GetComponent<Animator>();
+        anim.SetTrigger("Holster");
+
+        Animator anim2 = Cannon.GetComponent<Animator>();
+        anim2.SetTrigger("Draw");
+
+        cannonOut = true;
+
+        if (cannonOut == true)
+        {
+            Animator anim3 = Cannon.GetComponent<Animator>();
+            anim3.SetTrigger("Shoot");
+
+            if (Input.GetMouseButtonUp(1))
+            {
+                cannonOut = false;
+                Animator anim4 = Cannon.GetComponent<Animator>();
+                anim4.SetTrigger("Holster");
+            }
+        }
+
+
     }
 
     IEnumerator ResetAtkCD()
