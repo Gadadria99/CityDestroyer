@@ -46,6 +46,12 @@ public class PlayerMovement : MonoBehaviour
 
     Vector3 moveDirection;
 
+    public GrowthController gc;
+
+
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -60,13 +66,33 @@ public class PlayerMovement : MonoBehaviour
     {
         //check if on ground plane
 
-        grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 20.0f, WhatGround);
+        
+
+        
+            if(gc.Grow == false)
+        {
+            grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, WhatGround);
+        }
+            
+
+            else
+        {
+            grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 20f, WhatGround);
+        }
+            
+
+
+
+
+        // if()
+        // grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 20.0f, WhatGround);
 
         //drag 
 
         if (grounded)
         {
             rb.drag = groundDrag;
+
         }
         else
         {

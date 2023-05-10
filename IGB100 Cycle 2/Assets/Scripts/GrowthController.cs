@@ -40,6 +40,7 @@ public class GrowthController : MonoBehaviour
 
             Titan.SetActive(true);
             TitanCam.SetActive(true);
+            
 
         }
 

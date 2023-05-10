@@ -40,7 +40,7 @@ public class WallRunning : MonoBehaviour
     private Rigidbody rb;
     //must be set to same value as playerHeight in pm script
     public float playerHeight;
-
+    public GrowthController gc;
 
 
     // Start is called before the first frame update
@@ -77,9 +77,15 @@ public class WallRunning : MonoBehaviour
 
     private bool AboveGround()
     {
-        
-        return !Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, WhatGround);
+        if (gc.Grow == false)
+        {
+            return !Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, WhatGround);
+        }
 
+        else
+        {
+            return !Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 20f, WhatGround);
+        }
     }
 
     private void StateMachine()
