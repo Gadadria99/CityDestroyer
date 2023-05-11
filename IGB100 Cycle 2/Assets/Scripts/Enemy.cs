@@ -8,29 +8,18 @@ public class Enemy : MonoBehaviour
 
     NavMeshAgent agent;
     public GameObject target;
-
+    public GameObject deathEffect;
     public float moveSpeed = 15.0f;
     public float moveSpeed2 = 0.2f;
     public float health = 100.0f;
-
     public float damage = 1f;
     private float damageRate = 0.2f;
     private float damageTime;
 
-    public GameObject deathEffect;
-    
- 
 
-
-
-
-    // Start is called before the first frame update
     void Start()
     {
-        
         agent = GetComponent<NavMeshAgent>();
-
-        //Player reference exception catching
 
         try
         {
@@ -43,48 +32,42 @@ public class Enemy : MonoBehaviour
         }
     }
 
-   
 
     // Update is called once per frame
     void Update()
     {
-    print(Vector3.Distance(gameObject.transform.position, target.transform.position));
-        if (Vector3.Distance(gameObject.transform.position, target.transform.position) > 200) {
-            
-            Movement(); }
-        else { agent.destination = gameObject.transform.position; }
+        Movement();
     }
-
-
-
-
-
-
-
 
 
     //Enemy movement - beeline to player if mouse is rightclicked
-
     private void Movement()
     {
-
-
-        if(target)
+        if (target)
         {
-           
+            // Calculate the direction vector from the enemy to the player
+            Vector3 direction = target.transform.position - transform.position;
+            direction.y = 0f; // ignore any vertical difference
+
+            // The desired distance to keep from the player
+            float keepDistance = 5f;
+
+            // Calculate the current distance from the player
+            float currentDistance = direction.magnitude;
+
+            // If the current distance is less than the desired distance, move away from the player and keep the same distance
+            if (currentDistance < keepDistance)
+            {
+                agent.destination = transform.position - direction.normalized * (keepDistance - currentDistance);
+            }
+            // Otherwise, move towards the player
+            else
             {
                 agent.destination = target.transform.position;
             }
-             
         }
 
-
-
     }
-
-    
-
-
 
 
     public  void takeDamage(float damage)
