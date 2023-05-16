@@ -11,6 +11,7 @@ public class EnemyShooter : MonoBehaviour
 
     private float fireTimer;
 
+
     void Update()
     {
         // Check if the target (player) exists and if enough time has passed since the last shot
@@ -25,6 +26,8 @@ public class EnemyShooter : MonoBehaviour
             // Calculate the direction vector from the enemy to the player and set the bullet's velocity
             Vector3 direction = GetComponent<Enemy>().target.transform.position - transform.position;
             bullet.GetComponent<Rigidbody>().velocity = direction.normalized * bulletSpeed;
+
+            Destroy(bullet, 1f);
         }
     }
 }
