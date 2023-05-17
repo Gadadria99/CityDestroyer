@@ -8,11 +8,11 @@ public class Destruction : MonoBehaviour
     public GameObject Building;
     public PlayerPunch pp;
 
-    void Update() 
+    void Update()
     {
         pp = PlayerPunch.body;
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Fist" && pp.isAttking)
