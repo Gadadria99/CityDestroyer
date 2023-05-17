@@ -6,13 +6,11 @@ public class GrowthController : MonoBehaviour
 {
     public float energyLevel = 95f;
     public float maxEnergy = 100f;
-    private bool goUp = false;
     public GameObject Player;
     public GameObject PlayerCam;
     public GameObject Titan;
     public GameObject TitanCam;
     public bool Grow = false;
-   // public GameObject playerObj;
 
     public float dynFriction;
     public float statFriction;
@@ -29,7 +27,7 @@ public class GrowthController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //setScale();
+        print(Grow);
 
         if(energyLevel >= 100 && !Grow)
         {
@@ -41,43 +39,28 @@ public class GrowthController : MonoBehaviour
             TitanCam.SetActive(true);
 
         }
-    }
 
-
-    private void setScale()
-    {
-        if (energyLevel <= 0)
+        if (energyLevel <= 0 && Grow)
         {
+            Grow = false;
+            Player.SetActive(true);
+            PlayerCam.SetActive(true);
 
-            Player.transform.localScale = new Vector3(1f, 1f, 1f);
+            Titan.SetActive(false);
+            TitanCam.SetActive(false);
         }
 
-        else
+        if (Grow == true)
         {
-            if (energyLevel >= 100)
-            {
-                if (!goUp)
-                {
-                    Player.transform.localPosition = new Vector3(Player.transform.localPosition.x, 10, Player.transform.localPosition.z);
-                    goUp = true;
-                }
-                Player.transform.localScale = new Vector3(20f, 40f, 20f);
-
-                //playerObj.transform.GetComponent<GrowthController>().Recharge(90);
-                //col.material.dynamicFriction = dynFriction;
-                //col.material.staticFriction = statFriction;
-            }
-
+            energyLevel -= 3f * Time.deltaTime;
         }
-
     }
 
     public void Recharge()
     {
-        if (energyLevel < maxEnergy)
+        
+        if (energyLevel < maxEnergy && !Grow)
             energyLevel += 0.1f;
-        else
-            energyLevel = maxEnergy;
     }
 
 
