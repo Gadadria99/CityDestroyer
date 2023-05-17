@@ -24,7 +24,6 @@ public class GrowthController : MonoBehaviour
     void Start()
     {
         col = GetComponent<Collider>();
-
     }
 
     // Update is called once per frame
@@ -40,22 +39,15 @@ public class GrowthController : MonoBehaviour
 
             Titan.SetActive(true);
             TitanCam.SetActive(true);
-            
 
         }
-
-
     }
-
-
-
 
 
     private void setScale()
     {
         if (energyLevel <= 0)
         {
-            
 
             Player.transform.localScale = new Vector3(1f, 1f, 1f);
         }

@@ -60,15 +60,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 5455363044946602614}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 925afbd40e039bc488700f676d5c50db, type: 3}
+  m_Script: {fileID: 11500000, guid: 6a55caccf3b82bd4287d4d29e9f80168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {fileID: 919132149155446097, guid: 432686b2acc770c4dab2e2efb27949c0, type: 3}
+  deathEffect: {fileID: 0}
   moveSpeed: 15
   moveSpeed2: 0.2
   health: 100
-  damage: 25
-  deathEffect: {fileID: 0}
+  damageAmount: 10
 --- !u!114 &5455363044946602618
 MonoBehaviour:
   m_ObjectHideFlags: 0
