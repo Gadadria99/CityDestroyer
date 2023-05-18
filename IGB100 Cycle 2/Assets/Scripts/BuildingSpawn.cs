@@ -10,5 +10,6 @@ public class BuildingSpawn : MonoBehaviour
     void Start()
     {
         Instantiate(BuildingPreFab, transform.position, transform.rotation);
+        BuildingPreFab.transform.position = new  Vector3(transform.position.x, 200, transform.position.z);
     }
 }
