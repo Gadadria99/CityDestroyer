@@ -234,6 +234,8 @@ MonoBehaviour:
   building2: 0
   building3: 0
   building4: 0
+  HP: {fileID: 8826257781342117378, guid: 299962dcb2df67b498c1a14aee13ac13, type: 3}
+  NRG: {fileID: 7185837210752937105, guid: a984351cb63eefb46a0921a0d5bf9a30, type: 3}
 --- !u!54 &6362735527379813254
 Rigidbody:
   m_ObjectHideFlags: 0

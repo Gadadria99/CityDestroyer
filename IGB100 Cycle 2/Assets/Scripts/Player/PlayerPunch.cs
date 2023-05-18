@@ -31,7 +31,7 @@ public class PlayerPunch : MonoBehaviour
                 PunchAtk();
             }
         }
-        if (Input.GetMouseButton(1))
+        if (Input.GetMouseButtonDown(1))
         { 
             Shoot();
         }
@@ -44,6 +44,14 @@ public class PlayerPunch : MonoBehaviour
 
             Animator anim2 = FistL.GetComponent<Animator>();
             anim2.SetTrigger("Return");
+
+            cannonOut = false;
+            print(cannonOut);
+            Animator anim3 = Cannon.GetComponent<Animator>();
+            anim3.SetBool("Shoot", false);
+            
+            Animator anim4 = Cannon.GetComponent<Animator>();
+            anim4.SetTrigger("Holster");
         }
     }
 
@@ -68,7 +76,7 @@ public class PlayerPunch : MonoBehaviour
         }
     }
 
-    public void Shoot() 
+    public void Shoot()
     {
         isShooting = true;
 
@@ -83,19 +91,18 @@ public class PlayerPunch : MonoBehaviour
         if (cannonOut == true)
         {
             Animator anim3 = Cannon.GetComponent<Animator>();
-            anim3.SetTrigger("Shoot");
+            anim3.SetBool("Shoot", true);
 
             if (Input.GetMouseButtonUp(1))
             {
-                cannonOut = false;
-                Animator anim4 = Cannon.GetComponent<Animator>();
-                anim4.SetTrigger("Holster");
+
+
             }
+
+
+
         }
-
-
     }
-
     IEnumerator ResetAtkCD()
     {
         StartCoroutine(ResetAtkBool());
@@ -105,7 +112,7 @@ public class PlayerPunch : MonoBehaviour
 
     IEnumerator ResetAtkBool()
     {
-        yield return new WaitForSeconds(1.0f);
+        yield return new WaitForSeconds(0.5f);
         isAttking = false;
         
     }
