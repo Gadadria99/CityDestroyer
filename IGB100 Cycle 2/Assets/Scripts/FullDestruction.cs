@@ -13,6 +13,8 @@ public class FullDestruction : MonoBehaviour
     public bool building3 = false;
     public bool building4 = false;
 
+
+    private bool rolled = false;
     private float flip;
     private float chance;
     public GameObject HP;
@@ -29,6 +31,34 @@ public class FullDestruction : MonoBehaviour
         chance = Random.Range(0, 11);
         flip = Random.Range(0, 2);
 
+        if (BHealth2 < 70.0f && BHealth2 >= 66.0f)
+        {
+            Debug.Log("Health is: " + BHealth2);
+            building1 = false;
+            building2 = true;
+            buildinglist[0].SetActive(false);
+            buildinglist[1].SetActive(true);
+        }
+        
+        if (BHealth2 < 66.0f && BHealth2 >= 33.0f)
+        {
+            Debug.Log("Health is: " + BHealth2);
+            building2 = false;
+            building3 = true;
+            buildinglist[1].SetActive(false);
+            buildinglist[2].SetActive(true);
+        }
+        if (BHealth2 < 33.0f)
+        {
+            buildingCol.enabled = false;
+            Debug.Log("Health is: " + BHealth2);
+            building3 = false;
+            building4 = true;
+            buildinglist[2].SetActive(false);
+            buildinglist[3].SetActive(true);
+
+            DropItem();
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -36,51 +66,49 @@ public class FullDestruction : MonoBehaviour
         if (other.tag == "Fist" && building1 && pp2.isAttking)
         {
             BHealth2 -= 33.0f;
-            if (BHealth2 < 99.0f && BHealth2 >= 66.0f)
-            {
-                Debug.Log("Health is: " + BHealth2);
-                building1 = false;
-                building2 = true;
-                buildinglist[0].SetActive(false);
-                buildinglist[1].SetActive(true);
-            }
         }
         else if (other.tag == "Fist" && building2 && pp2.isAttking)
         {
             BHealth2 -= 33.0f;
-            if (BHealth2 < 66.0f && BHealth2 >= 33.0f)
-            {
-                Debug.Log("Health is: " + BHealth2);
-                building2 = false;
-                building3 = true;
-                buildinglist[1].SetActive(false);
-                buildinglist[2].SetActive(true);
-            }
         }
         else if (other.tag == "Fist" && building3 && pp2.isAttking)
         {
             BHealth2 -= 33.0f;
-            buildingCol.enabled = false;
-            if (BHealth2 < 33.0f)
-            {
-                Debug.Log("Health is: " + BHealth2);
-                building3 = false;
-                building4 = true;
-                buildinglist[2].SetActive(false);
-                buildinglist[3].SetActive(true);
+        }
+    }
 
-                if (chance <= 3)
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "Laser" && building1)
+        {
+            BHealth2 -= 1.0f;
+        }
+        else if (other.tag == "Laser" && building2)
+        {
+            BHealth2 -= 1.0f;
+        }
+        else if (other.tag == "Laser" && building3)
+        {
+            BHealth2 -= 1.0f;
+        }
+    }
+
+    private void DropItem()
+    {
+        if (rolled == false)
+        {
+            if (chance <= 3)
+            {
+                if (flip == 0)
                 {
-                    if (flip == 0)
-                    {
-                        Instantiate(HP, new Vector3(transform.position.x, 32, transform.position.z), transform.rotation);
-                    }
-                    else if (flip == 1) 
-                    {
-                        Instantiate(NRG, new Vector3(transform.position.x, 32, transform.position.z), transform.rotation);
-                    }
+                    Instantiate(HP, new Vector3(transform.position.x, 32, transform.position.z), transform.rotation);
+                }
+                else if (flip == 1)
+                {
+                    Instantiate(NRG, new Vector3(transform.position.x, 32, transform.position.z), transform.rotation);
                 }
             }
+            rolled = true;
         }
     }
 }

@@ -7,6 +7,9 @@ TagManager:
   - Enemy
   - Fist
   - Building
+  - World
+  - Cannon
+  - Laser
   layers:
   - Default
   - TransparentFX

@@ -15,6 +15,15 @@ public class PlayerPunch : MonoBehaviour
     public bool cannonOut = false;
     public float AttkCD = 0.5f;
 
+    public Transform cannonRot;
+    public Transform muzzle;
+    public GameObject shotPrefab;
+    private GameObject laser;
+    public GameObject cannon;
+    private float dis = 1500.0f;
+    private Vector3 laserLength;
+    //public Texture2D guiTexture;
+
     public static PlayerPunch body;
 
     void Awake() 
@@ -24,6 +33,15 @@ public class PlayerPunch : MonoBehaviour
     
     void Update()
     {
+        dis = GameObject.FindWithTag("Cannon").GetComponent<CannonRay>().distance;
+        Debug.Log("laser length is: " + dis);
+        //laserLength = new Vector3(transform.localScale.x, transform.localScale.y, dis);
+        
+        if (isShooting == true) 
+        {
+            
+        }
+
         if (Input.GetMouseButton(0))
         {
             if (CanAttk)
@@ -34,10 +52,12 @@ public class PlayerPunch : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
         { 
             Shoot();
+            StartCoroutine(Laser());
         }
         if (Input.GetMouseButtonUp(1))
         {
             isShooting = false;
+            Destroy(laser);
 
             Animator anim = FistL.GetComponent<Animator>();
             anim.SetTrigger("Draw");
@@ -52,6 +72,11 @@ public class PlayerPunch : MonoBehaviour
             
             Animator anim4 = Cannon.GetComponent<Animator>();
             anim4.SetTrigger("Holster");
+        }
+
+        if (isShooting == false) 
+        {
+            Destroy(laser);
         }
     }
 
@@ -78,8 +103,6 @@ public class PlayerPunch : MonoBehaviour
 
     public void Shoot()
     {
-        isShooting = true;
-
         Animator anim = FistL.GetComponent<Animator>();
         anim.SetTrigger("Holster");
 
@@ -92,15 +115,6 @@ public class PlayerPunch : MonoBehaviour
         {
             Animator anim3 = Cannon.GetComponent<Animator>();
             anim3.SetBool("Shoot", true);
-
-            if (Input.GetMouseButtonUp(1))
-            {
-
-
-            }
-
-
-
         }
     }
     IEnumerator ResetAtkCD()
@@ -115,5 +129,14 @@ public class PlayerPunch : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         isAttking = false;
         
+    }
+
+    IEnumerator Laser()
+    {
+        yield return new WaitForSeconds(0.3f);
+        laser = GameObject.Instantiate(shotPrefab, muzzle.position, muzzle.rotation);
+        laser.transform.SetParent(cannon.transform);
+        laser.transform.localScale += new Vector3(0, 0, dis);
+        isShooting = true;
     }
 }
