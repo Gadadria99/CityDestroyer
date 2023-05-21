@@ -17,19 +17,25 @@ public class GrowthController : MonoBehaviour
     public Collider col;
 
 
-
-    // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         col = GetComponent<Collider>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         print(Grow);
+        // Keep energy level between 0 - 100
+        if (energyLevel < 0)
+        { 
+            energyLevel = 0;
 
-        if(energyLevel >= 100 && !Grow)
+        } else if (energyLevel > maxEnergy)
+        {
+            energyLevel = maxEnergy;
+        }
+        // controls form toggling 
+        if(energyLevel == 100 && !Grow)
         {
             Grow = true;
             Player.SetActive(false);
@@ -40,7 +46,7 @@ public class GrowthController : MonoBehaviour
 
         }
 
-        if (energyLevel <= 0 && Grow)
+        if (energyLevel <= 0 && Grow == true)
         {
             Grow = false;
             Player.SetActive(true);
@@ -49,7 +55,7 @@ public class GrowthController : MonoBehaviour
             Titan.SetActive(false);
             TitanCam.SetActive(false);
         }
-
+        // controls energy draining
         if (Grow == true)
         {
             energyLevel -= 3f * Time.deltaTime;

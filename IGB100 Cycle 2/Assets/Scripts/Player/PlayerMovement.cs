@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
 
-
+    public GameObject Player;
     [Header("Movement")]
     public float moveSpeed;
     public float walkSpeed;
@@ -22,15 +22,19 @@ public class PlayerMovement : MonoBehaviour
 
     public float groundDrag;
     public float jumpForce;
+    public float jumpForceSuper;
     public float airMultiplier;
     public float jumpCooldown;
+    public float jumpCooldown2 = 5.0f;
     bool readyToJump;
+    bool readyToJumpSuper;
     public bool wallrunning;
-
+    public bool jumpIsSuper;
 
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
     public KeyCode runKey = KeyCode.LeftShift;
+    public KeyCode superJumpKey = KeyCode.Q;
 
     [Header("Ground Check")]
     public float playerHeight;
@@ -53,11 +57,12 @@ public class PlayerMovement : MonoBehaviour
 
 
     // Start is called before the first frame update
-    void Start()
+    void OnEnable()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
         readyToJump = true;
+        readyToJumpSuper = true;
         Physics.gravity = new Vector3(0, -40.0F, 0);
 
     }
@@ -126,13 +131,50 @@ public class PlayerMovement : MonoBehaviour
 
         // when to jump
 
-        if(Input.GetKey(jumpKey) && readyToJump && grounded)
+        if (Input.GetKey(jumpKey) && readyToJump && grounded)
         {
             readyToJump = false;
             jump();
             Invoke(nameof(ResetJump), jumpCooldown);
         }
+
+        if ((Input.GetKey(jumpKey) && Input.GetKey(superJumpKey)) && readyToJump && grounded)
+        {
+            readyToJumpSuper = false;
+            jumpSuper();
+            Invoke(nameof(ResetJumpSuper), jumpCooldown2);
+            jumpIsSuper = true;
+
+        }
+        else
+        {
+            if(jumpIsSuper && grounded)
+            {
+                AreaDamageBuildings(Player.transform.position, 50.0f, 100.0f);
+            }
+        }
     }
+
+    void AreaDamageBuildings(Vector3 location, float radius, float damage)
+    {
+        Collider[] buildingsInRange = Physics.OverlapSphere(location, radius);
+
+        foreach (Collider col in buildingsInRange)
+        {
+            FullDestruction building = col.GetComponent<FullDestruction>();
+            if (building != null)
+            {
+                // linear falloff of effect
+                float proximity = (location - building.transform.position).magnitude;
+                float effect = 1 - (proximity / radius);
+
+                building.TakeDamage(damage * effect);
+            }
+        }
+
+
+    }
+
 
     private void MovePlayer()
     {
@@ -182,10 +224,22 @@ public class PlayerMovement : MonoBehaviour
         rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
        
     }
+
+    private void jumpSuper()
+    {
+        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        rb.AddForce(transform.up * jumpForceSuper, ForceMode.Impulse);
+    }
+
     
     private void ResetJump()
     {
         readyToJump = true;
+    }
+
+    private void ResetJumpSuper()
+    {
+        readyToJumpSuper = true;
     }
 
     public enum movementState

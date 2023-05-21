@@ -12,6 +12,7 @@ public class FullDestruction : MonoBehaviour
     public bool building2 = false;
     public bool building3 = false;
     public bool building4 = false;
+    private bool dead = false;
 
 
     private bool rolled = false;
@@ -33,32 +34,41 @@ public class FullDestruction : MonoBehaviour
 
         if (BHealth2 < 70.0f && BHealth2 >= 66.0f)
         {
-            Debug.Log("Health is: " + BHealth2);
+            //Debug.Log("Health is: " + BHealth2);
             building1 = false;
             building2 = true;
             buildinglist[0].SetActive(false);
             buildinglist[1].SetActive(true);
         }
-        
-        if (BHealth2 < 66.0f && BHealth2 >= 33.0f)
+        else if (BHealth2 < 66.0f && BHealth2 >= 33.0f)
         {
-            Debug.Log("Health is: " + BHealth2);
+            //Debug.Log("Health is: " + BHealth2);
             building2 = false;
             building3 = true;
             buildinglist[1].SetActive(false);
             buildinglist[2].SetActive(true);
         }
-        if (BHealth2 < 33.0f)
+        else if (BHealth2 < 33.0f)
         {
-            buildingCol.enabled = false;
-            Debug.Log("Health is: " + BHealth2);
+            //Debug.Log("Health is: " + BHealth2);
             building3 = false;
             building4 = true;
             buildinglist[2].SetActive(false);
             buildinglist[3].SetActive(true);
+            dead = true;
 
             DropItem();
         }
+
+        if (dead)
+        {
+            buildingCol.enabled = false;
+        }
+    }
+
+    public void TakeDamage(float dmg)
+    {
+        BHealth2 -= dmg;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -82,6 +92,11 @@ public class FullDestruction : MonoBehaviour
         if (other.tag == "Laser" && building1)
         {
             BHealth2 -= 1.0f;
+            if (BHealth2 < 70)
+            {
+                building1 = false;
+                buildinglist[0].SetActive(false);
+            }
         }
         else if (other.tag == "Laser" && building2)
         {

@@ -22,11 +22,10 @@ public class PlayerPunch : MonoBehaviour
     public GameObject cannon;
     private float dis = 1500.0f;
     private Vector3 laserLength;
-    //public Texture2D guiTexture;
 
     public static PlayerPunch body;
 
-    void Awake() 
+    void OnEnable() 
     {
         body = this;
     }

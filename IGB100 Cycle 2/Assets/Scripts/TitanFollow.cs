@@ -11,7 +11,10 @@ public class TitanFollow : MonoBehaviour
     private float energylvl;
 
 
-    // Update is called once per frame
+    private void OnEnable()
+    {
+        aligned = false;
+    }
     void Update()
     {
         gc = scout.GetComponent<GrowthController>();
