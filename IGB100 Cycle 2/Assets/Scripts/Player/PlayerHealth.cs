@@ -55,4 +55,9 @@ public class PlayerHealth : MonoBehaviour
     {
         deathMessageUI.SetActive(true);
     }
+
+    public void healthBonus(float hlth)
+    {
+        currentHealth += hlth;
+    }
 }

@@ -10,7 +10,7 @@ public class ItemEnergy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        energy = GameObject.FindWithTag("Player").GetComponent<GrowthController>().energyLevel;
+        energy = GameObject.FindWithTag("PlayerBody").GetComponent<PlayerUI>().energyLevel;
     }
 
     // Update is called once per frame

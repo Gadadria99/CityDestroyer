@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class GrowthController : MonoBehaviour
 {
-    public float energyLevel = 95f;
-    public float maxEnergy = 100f;
+
     public GameObject Player;
     public GameObject PlayerCam;
     public GameObject Titan;
@@ -15,59 +14,82 @@ public class GrowthController : MonoBehaviour
     public float dynFriction;
     public float statFriction;
     public Collider col;
-
+    public float eL;
+    public float mE;
+    public float eLfwd = 0;
+    public float eRfwd;
+    public PlayerUI pUI;
 
     void OnEnable()
     {
         col = GetComponent<Collider>();
+
+        mE = GameObject.FindWithTag("PlayerBody").GetComponent<PlayerUI>().maxEnergy;
+        pUI = GameObject.FindWithTag("PlayerBody").GetComponent<PlayerUI>();
     }
 
     void Update()
     {
+
+        eL = GameObject.FindWithTag("PlayerBody").GetComponent<PlayerUI>().energyLevel;
+        //if (eLfwd == 0)
+        //{
+        //    eRfwd = eL;
+        //}
+        //else
+        //{
+        //    eRfwd = (eL + eLfwd);
+        //}
+
+        eRfwd = (eL + eLfwd);
         print(Grow);
         // Keep energy level between 0 - 100
-        if (energyLevel < 0)
-        { 
-            energyLevel = 0;
 
-        } else if (energyLevel > maxEnergy)
-        {
-            energyLevel = maxEnergy;
-        }
         // controls form toggling 
-        if(energyLevel == 100 && !Grow)
+        if(eL == 100 && !Grow)
         {
+            Player.transform.position = new Vector3(1, 0, 0);
             Grow = true;
             Player.SetActive(false);
             PlayerCam.SetActive(false);
 
             Titan.SetActive(true);
             TitanCam.SetActive(true);
+            
 
         }
 
-        if (energyLevel <= 0 && Grow == true)
+        else if (Grow == true)
+            {
+            
+            pUI.energyDrain(5f);
+ 
+        }
+
+        else if (eL <= 0 && Grow == true)
         {
+            eLfwd = 0;
             Grow = false;
             Player.SetActive(true);
             PlayerCam.SetActive(true);
 
             Titan.SetActive(false);
             TitanCam.SetActive(false);
+
         }
+
+ 
         // controls energy draining
-        if (Grow == true)
+
+
+    }
+
+    public void Recharge(float eVal)
+    {
+        if (eL < mE)
         {
-            energyLevel -= 3f * Time.deltaTime;
+            eLfwd += (eVal * Time.deltaTime);
         }
     }
-
-    public void Recharge()
-    {
-        
-        if (energyLevel < maxEnergy && !Grow)
-            energyLevel += 0.1f;
-    }
-
 
 }  

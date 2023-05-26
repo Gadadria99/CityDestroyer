@@ -14,12 +14,12 @@ public class CannonRay : MonoBehaviour
 
         Debug.DrawRay(transform.position, transform.up * length, Color.blue);
 
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit, Mathf.Infinity))
         {
             if (hit.collider.tag == "World" || hit.collider.tag == "Building")
             {
                 distance = hit.distance;
-                //Debug.Log(hit.distance);
+                Debug.Log(distance);
             }
         }
     }

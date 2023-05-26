@@ -6,8 +6,8 @@ public class ScoutFollow : MonoBehaviour
 {
     public Transform titanPosition;
     public bool aligned = false;
-    private GrowthController gc;
-    public GameObject titan;
+    private float gc;
+   // public GameObject titan;
     private float energylvl;
 
 
@@ -17,9 +17,9 @@ public class ScoutFollow : MonoBehaviour
     }
     void Update()
     {
-        gc = titan.GetComponent<GrowthController>();
+        gc = GameObject.FindWithTag("PlayerBody").GetComponent<PlayerUI>().energyLevel;
 
-        energylvl = gc.energyLevel;
+        energylvl = gc;
 
         if (energylvl <= 0 && !aligned)
         {
