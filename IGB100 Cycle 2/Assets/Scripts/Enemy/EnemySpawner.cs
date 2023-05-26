@@ -40,4 +40,6 @@ public class EnemySpawner : MonoBehaviour
         spawnInterval -= spawnIntervalDecreaseRate;
         spawnInterval = Mathf.Max(spawnInterval, minSpawnInterval);
     }
+
+
 }
