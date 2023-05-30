@@ -7,7 +7,7 @@ public class SingletonParams : MonoBehaviour
     private static SingletonParams manager;
     public static SingletonParams Instance { get { return manager; } }
 
-    public float maxEnergy = 100f;
+    public float maxEnergy = 101f;
     public float energyLevel;
     public bool Grow = false;
 
@@ -46,6 +46,16 @@ public class SingletonParams : MonoBehaviour
         if (energyLevel < maxEnergy)
         {
             energyLevel += (eVal * 2 * Time.deltaTime);
+        }
+
+    }
+
+    public void RechargeItem(float eVal)
+    {
+
+        if (energyLevel < maxEnergy)
+        {
+            energyLevel += eVal;
         }
 
     }

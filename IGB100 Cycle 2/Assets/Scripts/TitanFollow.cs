@@ -23,8 +23,9 @@ public class TitanFollow : MonoBehaviour
 
         if (energylvl >= 100 && !aligned)
         {
-            aligned = true;
+            
             transform.position = new Vector3(ScoutPosition.transform.position.x, transform.position.y, ScoutPosition.transform.position.z);
+            aligned = true;
         }
     }
 }

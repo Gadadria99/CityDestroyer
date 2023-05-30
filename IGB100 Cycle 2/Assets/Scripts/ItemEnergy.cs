@@ -17,20 +17,22 @@ public class ItemEnergy : MonoBehaviour
     void Update()
     {
         transform.Rotate(new Vector3(0, 1, 0) * rotateSpeed * Time.deltaTime);
-        if (bonus)
-        {
-            energy += 20;
-            bonus = false;
-        }
+        //if (bonus)
+        //{
+        //    energy += 20;
+        //    bonus = false;
+        //}
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player" && energy < 100)
         {
-            Destroy(this);
-            bonus = true;
+            
+            SingletonParams.Instance.RechargeItem(20);
             Debug.Log("!! - ITEM GET - !!");
+            Destroy(this.gameObject);
+
         }
     }
 }

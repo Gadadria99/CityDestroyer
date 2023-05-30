@@ -24,8 +24,9 @@ public class ScoutFollow : MonoBehaviour
 
         if (energylvl <= 0 && !aligned)
         {
-            aligned = true;
+            
             transform.position = new Vector3(titanPosition.transform.position.x, transform.position.y, titanPosition.transform.position.z);
+            aligned = true;
         }
     }
 }
