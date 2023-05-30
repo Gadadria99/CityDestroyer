@@ -11,7 +11,7 @@ public class CableConnet : MonoBehaviour
     {
         if (other.transform.tag == "Player")
         {
-            other.transform.GetComponent<GrowthController>().Recharge(1);
+            SingletonParams.Instance.Recharge(5);
 
             SoundFXManager.instance.PlaySoundFXClip(EnergyChargeSound, transform, 0.2f);
         }

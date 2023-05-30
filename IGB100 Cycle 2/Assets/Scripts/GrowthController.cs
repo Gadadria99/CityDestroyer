@@ -9,29 +9,31 @@ public class GrowthController : MonoBehaviour
     public GameObject PlayerCam;
     public GameObject Titan;
     public GameObject TitanCam;
-    public bool Grow = false;
+    public bool Grow;
 
     public float dynFriction;
     public float statFriction;
     public Collider col;
     public float eL;
     public float mE;
-    public float eLfwd = 0;
-    public float eRfwd;
-    public PlayerUI pUI;
+    //public float eLfwd = 0;
+    //public float eRfwd;
+   // public PlayerUI pUI;
 
     void OnEnable()
     {
         col = GetComponent<Collider>();
 
-        mE = GameObject.FindWithTag("PlayerBody").GetComponent<PlayerUI>().maxEnergy;
-        pUI = GameObject.FindWithTag("PlayerBody").GetComponent<PlayerUI>();
+        mE = SingletonParams.Instance.maxEnergy;
+        //eL = SingletonParams.Instance.energyLevel;
+        //Grow = SingletonParams.Instance.Grow;
     }
 
     void Update()
     {
+        eL = SingletonParams.Instance.energyLevel;
+        Grow = SingletonParams.Instance.Grow;
 
-        eL = GameObject.FindWithTag("PlayerBody").GetComponent<PlayerUI>().energyLevel;
         //if (eLfwd == 0)
         //{
         //    eRfwd = eL;
@@ -41,55 +43,63 @@ public class GrowthController : MonoBehaviour
         //    eRfwd = (eL + eLfwd);
         //}
 
-        eRfwd = (eL + eLfwd);
-        print(Grow);
+        //eRfwd = (eL + eLfwd);
+        //print(Grow);
         // Keep energy level between 0 - 100
 
         // controls form toggling 
-        if(eL == 100 && !Grow)
+
+
+        // controls energy draining
+        growState();
+
+    }
+
+
+    public void growState()
+    {
+        if (eL == 100 && !Grow)
         {
             Player.transform.position = new Vector3(1, 0, 0);
-            Grow = true;
+            SingletonParams.Instance.Grow = true;
             Player.SetActive(false);
             PlayerCam.SetActive(false);
 
             Titan.SetActive(true);
             TitanCam.SetActive(true);
-            
 
-        }
 
-        else if (Grow == true)
-            {
-            
-            pUI.energyDrain(5f);
- 
         }
 
         else if (eL <= 0 && Grow == true)
         {
-            eLfwd = 0;
-            Grow = false;
+            //eLfwd = 0;
+
             Player.SetActive(true);
             PlayerCam.SetActive(true);
 
             Titan.SetActive(false);
             TitanCam.SetActive(false);
+            SingletonParams.Instance.Grow = false;
 
         }
 
- 
-        // controls energy draining
-
-
-    }
-
-    public void Recharge(float eVal)
-    {
-        if (eL < mE)
+        else if (Grow == true)
         {
-            eLfwd += (eVal * Time.deltaTime);
+
+            SingletonParams.Instance.energyDrain(5f);
+
         }
+
+
+
     }
+    //public void Recharge(float eVal)
+    //{
+    //    if (eL < mE)
+    //    {
+    //        eLfwd += (eVal * Time.deltaTime);
+    //    }
+    //}
 
 }  

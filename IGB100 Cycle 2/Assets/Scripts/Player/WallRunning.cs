@@ -77,7 +77,7 @@ public class WallRunning : MonoBehaviour
 
     private bool AboveGround()
     {
-        if (gc.Grow == false)
+        if (SingletonParams.Instance.Grow == false)
         {
             return !Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, WhatGround);
         }

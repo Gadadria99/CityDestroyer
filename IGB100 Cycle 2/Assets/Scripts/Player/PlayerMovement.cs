@@ -47,10 +47,10 @@ public class PlayerMovement : MonoBehaviour
     float verticalInput;
     public float fallMultiplier = 20f;
     Rigidbody rb;
-
+    public bool Grow;
     Vector3 moveDirection;
 
-    public GrowthController gc;
+    //public GrowthController gc;
 
 
 
@@ -64,6 +64,7 @@ public class PlayerMovement : MonoBehaviour
         readyToJump = true;
         readyToJumpSuper = true;
         Physics.gravity = new Vector3(0, -40.0F, 0);
+        
 
     }
 
@@ -71,10 +72,10 @@ public class PlayerMovement : MonoBehaviour
     {
         //check if on ground plane
 
-        
+        Grow = SingletonParams.Instance.Grow;
 
-        
-            if(gc.Grow == false)
+
+        if (Grow == false)
         {
             grounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, WhatGround);
         }

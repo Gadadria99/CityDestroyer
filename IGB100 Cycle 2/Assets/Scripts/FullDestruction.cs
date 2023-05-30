@@ -73,17 +73,20 @@ public class FullDestruction : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Fist" && building1 && pp2.isAttking)
+        if(other.CompareTag("Fist"))
         {
-            BHealth2 -= 33.0f;
-        }
-        else if (other.tag == "Fist" && building2 && pp2.isAttking)
-        {
-            BHealth2 -= 33.0f;
-        }
-        else if (other.tag == "Fist" && building3 && pp2.isAttking)
-        {
-            BHealth2 -= 33.0f;
+            if (building1 && pp2.isAttking)
+            {
+                BHealth2 -= 33.0f;
+            }
+            else if (building2 && pp2.isAttking)
+            {
+                BHealth2 -= 33.0f;
+            }
+            else if (building3 && pp2.isAttking)
+            {
+                BHealth2 -= 33.0f;
+            }
         }
     }
 

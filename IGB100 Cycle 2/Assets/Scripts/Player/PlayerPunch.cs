@@ -25,11 +25,12 @@ public class PlayerPunch : MonoBehaviour
 
     public static PlayerPunch body;
 
-    void OnEnable() 
+    
+    void Start()
     {
         body = this;
     }
-    
+
     void Update()
     {
         dis = GameObject.FindWithTag("Cannon").GetComponent<CannonRay>().distance;

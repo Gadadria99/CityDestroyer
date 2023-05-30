@@ -12,8 +12,8 @@ public class ItemHealth : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        
+        ph = GameObject.FindWithTag("PlayerBody").GetComponent<PlayerHealth>();
+
     }
 
     // Update is called once per frame
@@ -24,18 +24,21 @@ public class ItemHealth : MonoBehaviour
         // {
         //health += 10;
         //bonus = false;
-        ph = GameObject.FindWithTag("PlayerBody").GetComponent<PlayerHealth>();
+
         health = ph.currentHealth;
         // }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-
         if (other.tag == "Player" && health < 100)
         {
+            ph.healthBonus(10);
+            //if(TryGetComponent(out PlayerHealth playerHealth))
+            //{
 
-            other.transform.GetComponent<PlayerHealth>().healthBonus(10);
+            //}
+
             Debug.Log("!! - ITEM GET - !!");
             Destroy(this.gameObject);
 
