@@ -30,7 +30,7 @@ public class FullDestruction : MonoBehaviour
     {
         pp2 = PlayerPunch.body;
         chance = Random.Range(0, 11);
-        flip = Random.Range(0, 2);
+        flip = Random.Range(0, 3);
 
         if (BHealth2 < 70.0f && BHealth2 >= 66.0f)
         {
@@ -121,7 +121,7 @@ public class FullDestruction : MonoBehaviour
                 {
                     Instantiate(HP, new Vector3(transform.position.x, 32, transform.position.z), transform.rotation);
                 }
-                else if (flip == 1)
+                else if (flip <= 1)
                 {
                     Instantiate(NRG, new Vector3(transform.position.x, 32, transform.position.z), transform.rotation);
                 }

@@ -126,7 +126,7 @@ public class PlayerPunch : MonoBehaviour
 
     IEnumerator ResetAtkBool()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.2f);
         isAttking = false;
         
     }
