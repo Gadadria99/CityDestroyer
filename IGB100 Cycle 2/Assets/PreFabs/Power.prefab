@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8699200410303974724}
   - component: {fileID: 6871705674272291212}
   - component: {fileID: 6871705674272291213}
-  - component: {fileID: 7791571055257692245}
+  - component: {fileID: 806368668755314330}
   m_Layer: 0
   m_Name: Power
   m_TagString: Untagged
@@ -115,7 +115,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 90
   m_CollisionDetection: 0
---- !u!114 &7791571055257692245
+--- !u!114 &806368668755314330
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

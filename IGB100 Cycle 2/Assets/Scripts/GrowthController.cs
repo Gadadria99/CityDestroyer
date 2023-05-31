@@ -61,13 +61,13 @@ public class GrowthController : MonoBehaviour
         if (eL >= 100 && !Grow)
         {
             //Player.transform.position = new Vector3(1, 0, 0);
-            SingletonParams.Instance.Grow = true;
+            
             Player.SetActive(false);
             PlayerCam.SetActive(false);
 
             Titan.SetActive(true);
             TitanCam.SetActive(true);
-
+            SingletonParams.Instance.Grow = true;
 
         }
 
@@ -87,7 +87,7 @@ public class GrowthController : MonoBehaviour
         else if (Grow == true)
         {
 
-            SingletonParams.Instance.energyDrain(1f);
+            SingletonParams.Instance.energyDrain(5f);
 
         }
 

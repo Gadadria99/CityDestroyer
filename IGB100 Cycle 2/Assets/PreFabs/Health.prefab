@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7025007116008243159}
   - component: {fileID: 8555787480006418538}
   - component: {fileID: 8555787480006418537}
-  - component: {fileID: 5087134128874441502}
+  - component: {fileID: -2357253398789151733}
   m_Layer: 0
   m_Name: Health
   m_TagString: Untagged
@@ -115,7 +115,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 90
   m_CollisionDetection: 0
---- !u!114 &5087134128874441502
+--- !u!114 &-2357253398789151733
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,4 +128,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 50
-  bonus: 0
+  health: 0
+  ph: {fileID: 0}
