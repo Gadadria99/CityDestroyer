@@ -3,23 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Orb : MonoBehaviour
-{    
+{
 
     public float BHealth2 = 100.0f;
-    public Material[] material;
+    public Material[] orb;
+    public Material[] points;
     public PlayerPunch pp2;
     private Collider buildingCol;
     Renderer rend;
     private bool dead = false;
+
+    public GameObject fire;
+    public GameObject plasma;
+    private bool exploded = false;
 
     public float rotateSpeed;
 
     private void Start()
     {
         buildingCol = GetComponent<Collider>();
-        rend = GetComponent<Renderer>();
-        rend.enabled = true;
-        rend.sharedMaterial = material[0];
+        rend = GetComponent<MeshRenderer>();
+        Material[] materials = rend.materials;
+        //rend.enabled = true;
+        materials[0] = points[0];
+        materials[1] = orb[0];
+        rend.materials = materials;
     }
 
     void Update()
@@ -30,17 +38,33 @@ public class Orb : MonoBehaviour
         if (BHealth2 < 90.0f && BHealth2 >= 70.0f)
         {
 
-            rend.sharedMaterial = material[1];
+            rotateSpeed = 200;
+            Material[] materials = rend.materials;
+            materials[0] = points[1];
+            materials[1] = orb[1];
+            rend.materials = materials;
         }
         else if (BHealth2 < 70.0f && BHealth2 >= 50.0f)
         {
 
-            rend.sharedMaterial = material[2];
+            rotateSpeed = 300;
+            Material[] materials = rend.materials;
+            materials[0] = points[2];
+            materials[1] = orb[2];
+            rend.materials = materials;
         }
         else if (BHealth2 < 50.0f && BHealth2 >= 30.0f)
         {
 
-            rend.sharedMaterial = material[3];
+            rotateSpeed = 400;
+            Material[] materials = rend.materials;
+            materials[0] = points[3];
+            materials[1] = orb[3];
+            rend.materials = materials;
+        }
+        else if (BHealth2 < 25.0f && BHealth2 > 1.0f)
+        {
+            rotateSpeed = 550;
         }
         else if (BHealth2 <= 0.0f)
         {
@@ -50,6 +74,14 @@ public class Orb : MonoBehaviour
         if (dead)
         {
             buildingCol.enabled = false;
+            if (exploded == false)
+            {
+                var f = Instantiate(fire, transform.position, transform.rotation);
+                var p = Instantiate(plasma, transform.position, transform.rotation);
+                Destroy(f, 4);
+                Destroy(p, 4);
+                exploded = true;
+            }
             Destroy(gameObject);
         }
     }
@@ -72,5 +104,4 @@ public class Orb : MonoBehaviour
             BHealth2 -= 0.2f;
         }
     }
-
 }

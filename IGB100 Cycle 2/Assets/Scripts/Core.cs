@@ -6,6 +6,7 @@ public class Core : MonoBehaviour
 {
     public float BHealth2 = 99.0f;
     public GameObject[] buildinglist;
+    public GameObject Orb;
     public PlayerPunch pp2;
     private Collider buildingCol;
     public bool building1 = true;
@@ -14,9 +15,11 @@ public class Core : MonoBehaviour
     public bool building4 = false;
     public bool building5 = false;
     public bool building6 = false;
+    public bool orb = false;
     private bool dead = false;
 
     public ShieldGen ShieldScript;
+    public GameObject Shield;
 
 
     private void Start()
@@ -28,8 +31,14 @@ public class Core : MonoBehaviour
     {
         pp2 = PlayerPunch.body;
 
+        if (ShieldScript.shieldDead == true)
+        { 
+            Destroy(Shield);
+            Debug.Log("SHIELD DOWN");
+        }
 
-        if (BHealth2 < 80.0f && BHealth2 >= 60.0f)
+
+            if (BHealth2 < 80.0f && BHealth2 >= 60.0f)
         {
 
             building1 = false;
@@ -49,8 +58,10 @@ public class Core : MonoBehaviour
         {
             building3 = false;
             building4 = true;
+            orb = true;
             buildinglist[2].SetActive(false);
             buildinglist[3].SetActive(true);
+            Orb.SetActive(true);
         }
         else if (BHealth2 < 20.0f && BHealth2 > 0.0f)
         {
@@ -65,6 +76,7 @@ public class Core : MonoBehaviour
             building5 = true;
             buildinglist[4].SetActive(false);
             buildinglist[5].SetActive(true);
+
             dead = true;
             if (dead)
             {
@@ -104,7 +116,7 @@ public class Core : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (ShieldScript.dead)
+        if (ShieldScript.shieldDead)
         {
             if (other.tag == "Laser" && building1)
             {

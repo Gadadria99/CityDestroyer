@@ -6,6 +6,7 @@ public class ShieldGen : MonoBehaviour
 {
     public float BHealth2 = 99.0f;
     public GameObject[] buildinglist;
+    public GameObject plasma;
     public PlayerPunch pp2;
     private Collider buildingCol;
     public bool building1 = true;
@@ -13,7 +14,8 @@ public class ShieldGen : MonoBehaviour
     public bool building3 = false;
     public bool building4 = false;
     public bool building5 = false;
-    public bool dead = false;
+    public bool shieldDead = false;
+    private bool exploded = false;
 
 
     private void Start()
@@ -55,10 +57,17 @@ public class ShieldGen : MonoBehaviour
             building5 = true;
             buildinglist[3].SetActive(false);
             buildinglist[4].SetActive(true);
-            dead = true;
-            if (dead)
+            shieldDead = true;
+            
+            if (shieldDead)
             {
                 buildingCol.enabled = false;
+                if (exploded == false)
+                {
+                    var p = Instantiate(plasma, transform.position, transform.rotation);
+                    Destroy(p, 4);
+                    exploded = true;
+                }
             }
         }
     }
@@ -72,19 +81,19 @@ public class ShieldGen : MonoBehaviour
     {
         if (other.tag == "Fist" && building1 && pp2.isAttking)
         {
-            BHealth2 -= 10.0f;
+            BHealth2 -= 5.0f;
         }
         else if (other.tag == "Fist" && building2 && pp2.isAttking)
         {
-            BHealth2 -= 10.0f;
+            BHealth2 -= 5.0f;
         }
         else if (other.tag == "Fist" && building3 && pp2.isAttking)
         {
-            BHealth2 -= 10.0f;
+            BHealth2 -= 5.0f;
         }
         else if (other.tag == "Fist" && building4 && pp2.isAttking)
         {
-            BHealth2 -= 10.0f;
+            BHealth2 -= 5.0f;
         }
     }
 
@@ -92,19 +101,19 @@ public class ShieldGen : MonoBehaviour
     {
         if (other.tag == "Laser" && building1)
         {
-            BHealth2 -= 1.0f;
+            BHealth2 -= 0.2f;
         }
         else if (other.tag == "Laser" && building2)
         {
-            BHealth2 -= 1.0f;
+            BHealth2 -= 0.2f;
         }
         else if (other.tag == "Laser" && building3)
         {
-            BHealth2 -= 1.0f;
+            BHealth2 -= 0.2f;
         }
         else if (other.tag == "Laser" && building4)
         {
-            BHealth2 -= 1.0f;
+            BHealth2 -= 0.2f;
         }
     }
 }
