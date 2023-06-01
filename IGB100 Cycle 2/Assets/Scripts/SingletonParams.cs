@@ -11,6 +11,11 @@ public class SingletonParams : MonoBehaviour
     public float energyLevel;
     public bool Grow = false;
 
+    public Transform ScoutPosition;
+    public Transform titanPosition;
+
+    [SerializeField] private AudioSource soundFXObject;
+
     void Awake()
     {
         if (manager != null && manager != this)
@@ -22,7 +27,7 @@ public class SingletonParams : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        energyLevel = 90;
+        energyLevel = 60;
     }
 
     // Update is called once per frame
@@ -66,6 +71,21 @@ public class SingletonParams : MonoBehaviour
         {
             energyLevel -= (nrgVal * Time.deltaTime);
         }
+
+    }
+
+
+    //sound
+
+
+    public void PlaySoundFXClip(AudioClip sound, Transform spawnTransform, float volume)
+    {
+        AudioSource audioSource = Instantiate(soundFXObject, spawnTransform.position, Quaternion.identity);
+        audioSource.clip = sound;
+        audioSource.volume = volume;
+        audioSource.Play();
+        float clipLength = audioSource.clip.length;
+        Destroy(audioSource.gameObject, clipLength);
 
     }
 }

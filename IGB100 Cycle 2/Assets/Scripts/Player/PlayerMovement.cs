@@ -50,7 +50,9 @@ public class PlayerMovement : MonoBehaviour
     public bool Grow;
     Vector3 moveDirection;
 
-    //public GrowthController gc;
+    //sound
+    public AudioClip wheelSound;
+    public AudioClip wheelSoundExit;
 
 
 
@@ -64,7 +66,8 @@ public class PlayerMovement : MonoBehaviour
         readyToJump = true;
         readyToJumpSuper = true;
         Physics.gravity = new Vector3(0, -40.0F, 0);
-        
+        GetComponent<AudioSource>().playOnAwake = false;
+
 
     }
 
@@ -179,6 +182,21 @@ public class PlayerMovement : MonoBehaviour
 
     private void MovePlayer()
     {
+
+        //play sound if scout on movement
+
+        //if (Grow == false && rb.velocity.x > 0)
+        //{
+
+        //    GetComponent<AudioSource>().clip = wheelSound;
+        //    GetComponent<AudioSource>().Play();
+        //}
+        //else if (rb.velocity.x == 0)
+        //{
+        //    GetComponent<AudioSource>().clip = wheelSoundExit;
+        //    GetComponent<AudioSource>().Play();
+        //}
+
         //slopemovement
         if (OnSlope())
         {
@@ -197,8 +215,12 @@ public class PlayerMovement : MonoBehaviour
 
 
 
-        if(grounded)
+        if (grounded)
+        {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
+
+
+        }
 
         else if(!grounded)
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);        

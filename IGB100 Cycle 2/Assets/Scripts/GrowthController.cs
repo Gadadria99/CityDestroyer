@@ -16,6 +16,7 @@ public class GrowthController : MonoBehaviour
     public Collider col;
     public float eL;
     public float mE;
+    public PlayerPunch pp;
     //public float eLfwd = 0;
     //public float eRfwd;
    // public PlayerUI pUI;
@@ -64,7 +65,6 @@ public class GrowthController : MonoBehaviour
             
             Player.SetActive(false);
             PlayerCam.SetActive(false);
-
             Titan.SetActive(true);
             TitanCam.SetActive(true);
             SingletonParams.Instance.Grow = true;
@@ -74,12 +74,13 @@ public class GrowthController : MonoBehaviour
         else if (eL <= 0 && Grow == true)
         {
             //eLfwd = 0;
-            
-            Player.SetActive(true);
-            PlayerCam.SetActive(true);
 
+            pp.isShooting = false;
+            pp.isAttking = false;
             Titan.SetActive(false);
             TitanCam.SetActive(false);
+            Player.SetActive(true);
+            PlayerCam.SetActive(true);
             SingletonParams.Instance.Grow = false;
 
         }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ScoutFollow : MonoBehaviour
 {
-    public Transform titanPosition;
+    
     public bool aligned = false;
     //private float gc;
    // public GameObject titan;
@@ -21,8 +21,9 @@ public class ScoutFollow : MonoBehaviour
         //gc = GameObject.FindWithTag("PlayerBody").GetComponent<PlayerUI>().energyLevel;
         //Grow = SingletonParams.Instance.Grow;
         energylvl = SingletonParams.Instance.energyLevel;
+        Transform titanPosition = SingletonParams.Instance.titanPosition;
 
-        if (energylvl <= 0 && !aligned)
+        if (energylvl < 1 && !aligned)
         {
             
             transform.position = new Vector3(titanPosition.transform.position.x, transform.position.y, titanPosition.transform.position.z);

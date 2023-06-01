@@ -8,11 +8,15 @@ public class ItemHealth : MonoBehaviour
    // public bool bonus = false;
     public float health;
     public PlayerHealth ph;
+    public AudioClip healthSound;
 
     // Start is called before the first frame update
     void Start()
     {
+        //GetComponent<AudioSource>().playOnAwake = false;
         ph = GameObject.FindWithTag("PlayerBody").GetComponent<PlayerHealth>();
+        //GetComponent<AudioSource>().clip = healthSound;
+        
 
     }
 
@@ -33,12 +37,13 @@ public class ItemHealth : MonoBehaviour
     {
         if (other.tag == "Player" && health < 100)
         {
+            //GetComponent<AudioSource>().Play();
             ph.healthBonus(10);
             //if(TryGetComponent(out PlayerHealth playerHealth))
             //{
 
             //}
-
+            SingletonParams.Instance.PlaySoundFXClip(healthSound, transform, 0.7f);
             Debug.Log("!! - ITEM GET - !!");
             Destroy(this.gameObject);
 

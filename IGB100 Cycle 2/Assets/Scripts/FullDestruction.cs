@@ -21,9 +21,17 @@ public class FullDestruction : MonoBehaviour
     public GameObject HP;
     public GameObject NRG;
 
+    [Header("sound")]
+    public AudioClip breaking1;
+    public AudioClip breaking2;
+    public AudioClip breaking3;
+
     private void Start()
     {
         buildingCol = GetComponent<Collider>();
+
+        
+        GetComponent<AudioSource>().playOnAwake = false;
     }
 
     void Update()
@@ -35,6 +43,12 @@ public class FullDestruction : MonoBehaviour
         if (BHealth2 < 70.0f && BHealth2 >= 66.0f)
         {
             //Debug.Log("Health is: " + BHealth2);
+
+            ////play sound 1
+            //SingletonParams.Instance.PlaySoundFXClip(breaking1, transform, 0.2f);
+
+
+
             building1 = false;
             building2 = true;
             buildinglist[0].SetActive(false);
@@ -43,6 +57,12 @@ public class FullDestruction : MonoBehaviour
         else if (BHealth2 < 66.0f && BHealth2 >= 33.0f)
         {
             //Debug.Log("Health is: " + BHealth2);
+
+            ////play sound 2
+            //SingletonParams.Instance.PlaySoundFXClip(breaking2, transform, 0.2f);
+
+
+
             building2 = false;
             building3 = true;
             buildinglist[1].SetActive(false);
@@ -51,6 +71,11 @@ public class FullDestruction : MonoBehaviour
         else if (BHealth2 < 33.0f)
         {
             //Debug.Log("Health is: " + BHealth2);
+
+            //play sound 3
+            //SingletonParams.Instance.PlaySoundFXClip(breaking3, transform, 0.2f);
+
+
             building3 = false;
             building4 = true;
             buildinglist[2].SetActive(false);
@@ -77,17 +102,46 @@ public class FullDestruction : MonoBehaviour
         {
             if (building1 && pp2.isAttking)
             {
+
                 BHealth2 -= 33.0f;
+                //GetComponent<AudioSource>().Stop();
+                GetComponent<AudioSource>().clip = breaking1;
+                GetComponent<AudioSource>().Play();
             }
             else if (building2 && pp2.isAttking)
             {
                 BHealth2 -= 33.0f;
+                //GetComponent<AudioSource>().Stop();
+                GetComponent<AudioSource>().clip = breaking2;
+                GetComponent<AudioSource>().Play();
             }
             else if (building3 && pp2.isAttking)
             {
                 BHealth2 -= 33.0f;
+
+                //GetComponent<AudioSource>().Stop();
+                GetComponent<AudioSource>().clip = breaking3;
+                GetComponent<AudioSource>().Play();
             }
         }
+
+        if (other.tag == "Laser" && building1)
+        {
+            GetComponent<AudioSource>().clip = breaking1;
+            GetComponent<AudioSource>().Play();
+        }
+        else if (other.tag == "Laser" && building2)
+        {
+            GetComponent<AudioSource>().clip = breaking2;
+            GetComponent<AudioSource>().Play();
+        }
+        else if (other.tag == "Laser" && building3)
+        {
+            GetComponent<AudioSource>().clip = breaking3;
+            GetComponent<AudioSource>().Play();
+        }
+
+
     }
 
     private void OnTriggerStay(Collider other)

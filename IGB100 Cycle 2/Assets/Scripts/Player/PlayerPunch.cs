@@ -25,10 +25,14 @@ public class PlayerPunch : MonoBehaviour
 
     public static PlayerPunch body;
 
-    
+    public AudioClip lazerSound;
+    public AudioClip lazerSoundExit;
+    public AudioClip swoosh;
+
     void Start()
     {
         body = this;
+        GetComponent<AudioSource>().playOnAwake = false;
     }
 
     void Update()
@@ -47,17 +51,24 @@ public class PlayerPunch : MonoBehaviour
             if (CanAttk)
             {
                 PunchAtk();
+                GetComponent<AudioSource>().clip = swoosh;
+                GetComponent<AudioSource>().Play();
             }
         }
         if (Input.GetMouseButtonDown(1))
         { 
             Shoot();
             StartCoroutine(Laser());
+            GetComponent<AudioSource>().clip = lazerSound;
+            GetComponent<AudioSource>().Play();
         }
         if (Input.GetMouseButtonUp(1))
         {
             isShooting = false;
             Destroy(laser);
+            GetComponent<AudioSource>().Stop();
+            GetComponent<AudioSource>().clip = lazerSoundExit;
+            GetComponent<AudioSource>().Play();
 
             Animator anim = FistL.GetComponent<Animator>();
             anim.SetTrigger("Draw");
@@ -126,7 +137,7 @@ public class PlayerPunch : MonoBehaviour
 
     IEnumerator ResetAtkBool()
     {
-        yield return new WaitForSeconds(0.2f);
+        yield return new WaitForSeconds(0.1f);
         isAttking = false;
         
     }
