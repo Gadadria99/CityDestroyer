@@ -148,7 +148,7 @@ public class FullDestruction : MonoBehaviour
     {
         if (other.tag == "Laser" && building1)
         {
-            BHealth2 -= 1.0f;
+            BHealth2 -= 2.0f;
             if (BHealth2 < 70)
             {
                 building1 = false;
@@ -157,11 +157,11 @@ public class FullDestruction : MonoBehaviour
         }
         else if (other.tag == "Laser" && building2)
         {
-            BHealth2 -= 1.0f;
+            BHealth2 -= 2.0f;
         }
         else if (other.tag == "Laser" && building3)
         {
-            BHealth2 -= 1.0f;
+            BHealth2 -= 2.0f;
         }
     }
 

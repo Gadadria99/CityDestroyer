@@ -21,6 +21,10 @@ public class CannonRay : MonoBehaviour
                 distance = hit.distance;
                 Debug.Log(distance);
             }
+            else
+            {
+                distance = 1500f;
+            }
         }
     }
 }

@@ -101,19 +101,19 @@ public class ShieldGen : MonoBehaviour
     {
         if (other.tag == "Laser" && building1)
         {
-            BHealth2 -= 0.2f;
+            BHealth2 -= 0.3f;
         }
         else if (other.tag == "Laser" && building2)
         {
-            BHealth2 -= 0.2f;
+            BHealth2 -= 0.3f;
         }
         else if (other.tag == "Laser" && building3)
         {
-            BHealth2 -= 0.2f;
+            BHealth2 -= 0.3f;
         }
         else if (other.tag == "Laser" && building4)
         {
-            BHealth2 -= 0.2f;
+            BHealth2 -= 0.3f;
         }
     }
 }

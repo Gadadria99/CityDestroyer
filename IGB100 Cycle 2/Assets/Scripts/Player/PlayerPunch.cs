@@ -39,12 +39,12 @@ public class PlayerPunch : MonoBehaviour
     {
         dis = GameObject.FindWithTag("Cannon").GetComponent<CannonRay>().distance;
         Debug.Log("laser length is: " + dis);
-        //laserLength = new Vector3(transform.localScale.x, transform.localScale.y, dis);
+        laserLength = new Vector3(0.014f, 0.014f, dis * 0.0003f);
         
-        //if (isShooting == true) 
-        //{
-            
-        //}
+        if (isShooting == true) 
+        {
+            laser.transform.localScale = laserLength;
+        }
 
         if (Input.GetMouseButton(0))
         {
@@ -147,7 +147,7 @@ public class PlayerPunch : MonoBehaviour
         yield return new WaitForSeconds(0.0f);
         laser = GameObject.Instantiate(shotPrefab, muzzle.position, muzzle.rotation);
         laser.transform.SetParent(cannon.transform);
-        laser.transform.localScale += new Vector3(0, 0, dis);
+        //laser.transform.localScale = new Vector3(0, 0, dis);
         isShooting = true;
     }
 }

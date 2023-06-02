@@ -20,10 +20,9 @@ public class CableConnet : MonoBehaviour
         //GetComponent<AudioSource>().clip = EnergyChargeSound;
     }
 
-    void update()
+    void Update()
     {
         Grow = SingletonParams.Instance.Grow;
-        
     }
 
     //Plays Sound Whenever collision detected
