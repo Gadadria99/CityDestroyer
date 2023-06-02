@@ -51,9 +51,10 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveDirection;
 
     //sound
-    public AudioClip wheelSound;
-    public AudioClip wheelSoundExit;
-
+    public AudioSource audioScout;
+    //public AudioClip wheelSound;
+    //public AudioClip wheelSoundExit;
+    public KeyCode fwdKey = KeyCode.W;
 
 
 
@@ -66,7 +67,8 @@ public class PlayerMovement : MonoBehaviour
         readyToJump = true;
         readyToJumpSuper = true;
         Physics.gravity = new Vector3(0, -40.0F, 0);
-        GetComponent<AudioSource>().playOnAwake = false;
+        //GetComponent<AudioSource>().clip = wheelSound;
+        //GetComponent<AudioSource>().playOnAwake = false;
 
 
     }
@@ -76,6 +78,17 @@ public class PlayerMovement : MonoBehaviour
         //check if on ground plane
 
         Grow = SingletonParams.Instance.Grow;
+
+
+        //if (Input.GetKeyDown(fwdKey))
+        //{
+                
+        //        audioScout.Play();
+        //}
+        //else
+        //{
+        //    audioScout.Stop();
+        //}
 
 
         if (Grow == false)

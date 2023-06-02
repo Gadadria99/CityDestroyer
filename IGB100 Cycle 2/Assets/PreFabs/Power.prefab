@@ -128,4 +128,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotateSpeed: 50
-  bonus: 0
+  energySound: {fileID: 8300000, guid: a9c97543e9eb21a4abea5767d1ece646, type: 3}

@@ -14,7 +14,7 @@ public class ItemHealth : MonoBehaviour
     void Start()
     {
         //GetComponent<AudioSource>().playOnAwake = false;
-        health = SingletonParams.Instance.currentHealth;
+        
         //GetComponent<AudioSource>().clip = healthSound;
         
 
@@ -24,6 +24,7 @@ public class ItemHealth : MonoBehaviour
     void Update()
     {
         transform.Rotate(new Vector3(0, 1, 0) * rotateSpeed * Time.deltaTime);
+        health = SingletonParams.Instance.currentHealth;
         //if (bonus)
         // {
         //health += 10;
