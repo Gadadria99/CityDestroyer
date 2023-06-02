@@ -3,6 +3,8 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
+    public GameObject how2play;
+    public GameObject backbtn;
     private void Start()
     {
         Cursor.visible = true;
@@ -21,6 +23,9 @@ public class MainMenuController : MonoBehaviour
     public void HowToPlay()
     {
         // Open how to play screen
+        how2play.SetActive(true);
+        backbtn.SetActive(true);
+
     }
 
     public void QuitGame()
@@ -28,4 +33,11 @@ public class MainMenuController : MonoBehaviour
         // Quit the game (works only in built executable, not in Unity Editor)
         Application.Quit();
     }
+
+    public void Back()
+    {
+        how2play.SetActive(false);
+        backbtn.SetActive(false);
+    }
+
 }
