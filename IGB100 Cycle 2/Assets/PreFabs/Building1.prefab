@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 8471129966300774796}
   - component: {fileID: -9028139295804140488}
   - component: {fileID: 8156128580924157628}
+  - component: {fileID: 8376708140609221040}
   m_Layer: 0
   m_Name: Building1
   m_TagString: Building
@@ -289,6 +290,22 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!208 &8376708140609221040
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2938811772749729928}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 9, y: 30, z: 8.5}
+  m_MoveThreshold: 10
+  m_Carve: 1
+  m_CarveOnlyStationary: 0
+  m_Center: {x: 0, y: 0, z: 0}
+  m_TimeToStationary: 0
 --- !u!1001 &2146729590003111420
 PrefabInstance:
   m_ObjectHideFlags: 0

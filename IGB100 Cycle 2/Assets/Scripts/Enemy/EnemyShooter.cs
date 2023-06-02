@@ -7,8 +7,8 @@ public class EnemyShooter : MonoBehaviour
     public GameObject bulletPrefab;
     public Transform bulletSpawnPoint;
     public float fireRate = 1.0f;
-    public float bulletSpeed = 10.0f;
-    public float shootDistance = 50.0f; // Distance at which the enemy will start shooting
+    public float bulletSpeed = 2000.0f;
+    public float shootDistance = 75.0f; // Distance at which the enemy will start shooting
 
     private GameObject target;
     private float fireTimer;
@@ -42,7 +42,7 @@ public class EnemyShooter : MonoBehaviour
                     bullet.GetComponent<Rigidbody>().velocity = direction.normalized * bulletSpeed;
 
                     //Destroy the bullet a second after it is projected
-                    Destroy(bullet, 5f);
+                    Destroy(bullet, 2f);
                 }
             }
         }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemEnergy : MonoBehaviour
 {
     public float rotateSpeed = 50f;
-    public bool bonus = false;
+    //public bool bonus = false;
     private float energy;
     // Start is called before the first frame update
     void Start()

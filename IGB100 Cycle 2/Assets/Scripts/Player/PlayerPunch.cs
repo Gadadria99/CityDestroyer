@@ -7,6 +7,7 @@ public class PlayerPunch : MonoBehaviour
     public GameObject FistR;
     public GameObject FistL;
     public GameObject Cannon;
+    public GameObject Enemy;
 
     public bool isShooting = false;
     public bool CanAttk = true;

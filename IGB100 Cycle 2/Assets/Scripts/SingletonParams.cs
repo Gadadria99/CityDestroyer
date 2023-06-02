@@ -11,6 +11,10 @@ public class SingletonParams : MonoBehaviour
     public float energyLevel;
     public bool Grow = false;
 
+    public float maxHealth = 100f;
+    public float currentHealth;
+    public GameObject deathMessageUI;
+
     public Transform ScoutPosition;
     public Transform titanPosition;
 
@@ -22,12 +26,15 @@ public class SingletonParams : MonoBehaviour
             Destroy(gameObject);
         else
             manager = this;
+
     }
 
     // Start is called before the first frame update
     void Start()
     {
         energyLevel = 60;
+        currentHealth = maxHealth;
+        deathMessageUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -45,7 +52,43 @@ public class SingletonParams : MonoBehaviour
         }
     }
 
-    public void Recharge(float eVal)
+
+    //Health
+
+    public void TakeDamage(float dmg)
+    {
+        currentHealth -= dmg;
+
+        //healthbar.value = (currentHealth / maxHealth);
+
+        if (currentHealth <= 0f)
+        {
+            currentHealth = 0f;
+            Destroy(this.gameObject);
+            PlayerDeath();
+        }
+    }
+
+
+    private void PlayerDeath()
+    {
+        deathMessageUI.SetActive(true);
+    }
+
+
+    public void healthBonus(float hlth)
+    {
+        currentHealth += hlth;
+    }
+
+
+
+
+//Energy
+
+
+
+public void Recharge(float eVal)
     {
 
         if (energyLevel < maxEnergy)

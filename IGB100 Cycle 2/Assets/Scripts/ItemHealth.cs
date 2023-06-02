@@ -5,16 +5,16 @@ using UnityEngine;
 public class ItemHealth : MonoBehaviour
 {
     public float rotateSpeed = 50f;
-   // public bool bonus = false;
+   //public bool bonus = false;
     public float health;
-    public PlayerHealth ph;
+    //public PlayerHealth ph;
     public AudioClip healthSound;
 
     // Start is called before the first frame update
     void Start()
     {
         //GetComponent<AudioSource>().playOnAwake = false;
-        ph = GameObject.FindWithTag("PlayerBody").GetComponent<PlayerHealth>();
+        health = SingletonParams.Instance.currentHealth;
         //GetComponent<AudioSource>().clip = healthSound;
         
 
@@ -29,7 +29,7 @@ public class ItemHealth : MonoBehaviour
         //health += 10;
         //bonus = false;
 
-        health = ph.currentHealth;
+        //health = ph.currentHealth;
         // }
     }
 
@@ -38,11 +38,12 @@ public class ItemHealth : MonoBehaviour
         if (other.tag == "Player" && health < 100)
         {
             //GetComponent<AudioSource>().Play();
-            ph.healthBonus(10);
+            
             //if(TryGetComponent(out PlayerHealth playerHealth))
             //{
 
             //}
+            SingletonParams.Instance.healthBonus(20);
             SingletonParams.Instance.PlaySoundFXClip(healthSound, transform, 0.7f);
             Debug.Log("!! - ITEM GET - !!");
             Destroy(this.gameObject);

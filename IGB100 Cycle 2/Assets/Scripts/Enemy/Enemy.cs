@@ -12,15 +12,29 @@ public class Enemy : MonoBehaviour
     public float moveSpeed = 15.0f;
     public float health = 100.0f;
     public float damageAmount = 10f;
+    bool exploded;
 
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
 
+        //try
+        //{
+        //    target = (GameObject.FindGameObjectWithTag("Player"));
+            
+        //}
+        //catch
+        //{
+        //    target = null;
+        //}
+    }
+
+    void FIxedUpdate()
+    {
         try
         {
             target = (GameObject.FindGameObjectWithTag("Player"));
-            
+
         }
         catch
         {
@@ -69,21 +83,48 @@ public class Enemy : MonoBehaviour
     {
         health -= damage;
 
-        if (health <= 0)
+        if (health <= 0 && exploded == false)
         {
+
             Destroy(this.gameObject);
-            Instantiate(deathEffect, transform.position, transform.rotation);
+            var p = Instantiate(deathEffect, transform.position, transform.rotation);
+            Destroy(p, 4);
+            exploded = true;
+            
+            
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider other)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        if (other.CompareTag("Fist"))
         {
-            PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
+            //PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+            //if (playerHealth != null)
+            //{
+            //    playerHealth.TakeDamage(damageAmount);
+            //}
+
+            TakeDamage(20);
+        }
+
+
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Laser"))
+        {
+            health -= (5f * Time.deltaTime);
+            if (health <= 0 && exploded == false)
             {
-                playerHealth.TakeDamage(damageAmount);
+
+                Destroy(this.gameObject);
+                var p = Instantiate(deathEffect, transform.position, transform.rotation);
+                Destroy(p, 4);
+                exploded = true;
+
+
             }
         }
     }

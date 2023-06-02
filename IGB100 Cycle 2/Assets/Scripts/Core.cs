@@ -18,16 +18,19 @@ public class Core : MonoBehaviour
     public bool orb = false;
     private bool dead = false;
 
+   // public ShieldGen ShieldScript;
     public ShieldGen ShieldScript;
     public GameObject Shield;
+    //public bool shieldDead;
 
 
     private void Start()
     {
         buildingCol = GetComponent<Collider>();
+       // shieldDead = ShieldScript.GetComponent<ShieldGen>().shieldDead;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         pp2 = PlayerPunch.body;
 
@@ -38,7 +41,7 @@ public class Core : MonoBehaviour
         }
 
 
-            if (BHealth2 < 80.0f && BHealth2 >= 60.0f)
+        if (BHealth2 < 80.0f && BHealth2 >= 60.0f)
         {
 
             building1 = false;
