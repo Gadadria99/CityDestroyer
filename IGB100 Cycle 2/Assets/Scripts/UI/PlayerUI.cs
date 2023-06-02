@@ -15,7 +15,7 @@ public class PlayerUI : MonoBehaviour
     {
         
         energyLevel = SingletonParams.Instance.energyLevel; 
-        nrg.text = "Energy: " + energyLevel.ToString("F0");
+        nrg.text = energyLevel.ToString("F0") + "%";
         
     }
 

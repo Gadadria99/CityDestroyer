@@ -39,7 +39,7 @@ public class PlayerPunch : MonoBehaviour
     void Update()
     {
         dis = GameObject.FindWithTag("Cannon").GetComponent<CannonRay>().distance;
-        Debug.Log("laser length is: " + dis);
+        //Debug.Log("laser length is: " + dis);
         laserLength = new Vector3(0.014f, 0.014f, dis * 0.0003f);
         
         if (isShooting == true) 

@@ -23,6 +23,9 @@ public class Core : MonoBehaviour
     public GameObject Shield;
     //public bool shieldDead;
 
+    public GameObject End;
+    public Orb orbScript;
+
 
     private void Start()
     {
@@ -33,6 +36,11 @@ public class Core : MonoBehaviour
     void FixedUpdate()
     {
         pp2 = PlayerPunch.body;
+
+        if (orbScript.exploded)
+        {
+            StartCoroutine(YouWin());
+        }
 
         if (ShieldScript.shieldDead == true)
         { 
@@ -142,6 +150,13 @@ public class Core : MonoBehaviour
                 BHealth2 -= 0.2f;
             }
         }
+    }
+
+    IEnumerator YouWin()
+    {
+        yield return new WaitForSeconds(2);
+        End.SetActive(true);
+        Time.timeScale = 0.0f;
     }
 }
 

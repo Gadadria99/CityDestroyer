@@ -15,9 +15,11 @@ public class Orb : MonoBehaviour
 
     public GameObject fire;
     public GameObject plasma;
-    private bool exploded = false;
+    public bool exploded = false;
 
     public float rotateSpeed;
+
+    public GameObject End;
 
     private void Start()
     {
