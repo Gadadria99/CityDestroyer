@@ -28,10 +28,28 @@ public class Core : MonoBehaviour
     public Orb orbScript;
 
 
+    //[Header("sound")]
+    //public AudioClip breaking1;
+    //public AudioClip breaking2;
+    //public AudioClip breaking3;
+    //public AudioClip breaking4;
+    //public AudioClip breaking5;
+    //public AudioClip orbSound;
+    //public AudioClip orbDestroy;
+
+
+    //public AudioSource audioSource;
+
+
+    
+
+
     private void Start()
     {
         buildingCol = GetComponent<Collider>();
-       // shieldDead = ShieldScript.GetComponent<ShieldGen>().shieldDead;
+        // shieldDead = ShieldScript.GetComponent<ShieldGen>().shieldDead;
+        //audioSource = GetComponent<AudioSource>();
+        //audioSource.playOnAwake = false;
     }
 
     void FixedUpdate()
@@ -57,6 +75,7 @@ public class Core : MonoBehaviour
             building2 = true;
             buildinglist[0].SetActive(false);
             buildinglist[1].SetActive(true);
+            
         }
         else if (BHealth2 < 60.0f && BHealth2 >= 40.0f)
         {
@@ -74,6 +93,7 @@ public class Core : MonoBehaviour
             buildinglist[2].SetActive(false);
             buildinglist[3].SetActive(true);
             Orb.SetActive(true);
+            
         }
         else if (BHealth2 < 20.0f && BHealth2 > 0.0f)
         {
@@ -81,6 +101,7 @@ public class Core : MonoBehaviour
             building5 = true;
             buildinglist[3].SetActive(false);
             buildinglist[4].SetActive(true);
+            
         }
         else if (BHealth2 <= 0.0f)
         {
@@ -88,6 +109,7 @@ public class Core : MonoBehaviour
             building5 = true;
             buildinglist[4].SetActive(false);
             buildinglist[5].SetActive(true);
+            
 
             dead = true;
             if (dead)

@@ -18,6 +18,7 @@ public class ShieldGen : MonoBehaviour
     private bool exploded = false;
 
 
+
     private void Start()
     {
         buildingCol = GetComponent<Collider>();
@@ -35,6 +36,7 @@ public class ShieldGen : MonoBehaviour
             building2 = true;
             buildinglist[0].SetActive(false);
             buildinglist[1].SetActive(true);
+            
         }
         else if (BHealth2 < 60.0f && BHealth2 >= 40.0f)
         {
@@ -43,6 +45,7 @@ public class ShieldGen : MonoBehaviour
             building3 = true;
             buildinglist[1].SetActive(false);
             buildinglist[2].SetActive(true);
+            
         }
         else if (BHealth2 < 40.0f && BHealth2 >= 20.0f)
         {
@@ -50,6 +53,7 @@ public class ShieldGen : MonoBehaviour
             building4 = true;
             buildinglist[2].SetActive(false);
             buildinglist[3].SetActive(true);
+            
         }
         else if (BHealth2 < 20.0f)
         {
@@ -57,6 +61,7 @@ public class ShieldGen : MonoBehaviour
             building5 = true;
             buildinglist[3].SetActive(false);
             buildinglist[4].SetActive(true);
+            
             shieldDead = true;
             
             if (shieldDead)

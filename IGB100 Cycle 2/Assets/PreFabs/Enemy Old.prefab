@@ -118,10 +118,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  deathEffect: {fileID: 0}
+  deathEffect: {fileID: 3275939365607441503, guid: 7fd4151f4ed30ca4b987fa356621b7fe, type: 3}
   moveSpeed: 15
   health: 100
   damageAmount: 10
+  pp: {fileID: 0}
 --- !u!1001 &4794339411815701016
 PrefabInstance:
   m_ObjectHideFlags: 0

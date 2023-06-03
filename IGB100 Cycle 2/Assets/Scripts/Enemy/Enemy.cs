@@ -9,7 +9,7 @@ public class Enemy : MonoBehaviour
     NavMeshAgent agent;
     public GameObject target;
     public GameObject deathEffect;
-    public float moveSpeed = 15.0f;
+    public float moveSpeed = 60.0f;
     public float health = 100.0f;
     public float damageAmount = 10f;
     bool exploded;
@@ -64,7 +64,7 @@ public class Enemy : MonoBehaviour
             direction.y = 0f; // ignore any vertical difference
 
             // The desired distance to keep from the player
-            float keepDistance = 10f;
+            float keepDistance = 17f;
 
             // Calculate the current distance from the player
             float currentDistance = direction.magnitude;
@@ -72,7 +72,7 @@ public class Enemy : MonoBehaviour
             // If the current distance is less than the desired distance, move away from the player and keep the same distance
             if (currentDistance < keepDistance)
             {
-                agent.destination = transform.position - direction.normalized * (keepDistance - currentDistance);
+                agent.destination = transform.position - (direction.normalized * 10) * (keepDistance - currentDistance);
             }
             // Otherwise, move towards the player
             else
@@ -101,7 +101,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Fist") && pp.isAttking)
+        if (other.CompareTag("Fist"))
         {
             //PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
             //if (playerHealth != null)

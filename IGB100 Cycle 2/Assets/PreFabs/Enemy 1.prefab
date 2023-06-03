@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5102314644120009265}
   - component: {fileID: 7110824779206047111}
   - component: {fileID: 7110824779509316660}
-  - component: {fileID: 7110824779509316623}
+  - component: {fileID: 5441169666329221901}
   m_Layer: 0
   m_Name: Enemy 1
   m_TagString: Enemy
@@ -77,12 +77,12 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 5
   m_Speed: 25
-  m_Acceleration: 12
+  m_Acceleration: 20
   avoidancePriority: 10
   m_AngularSpeed: 100
   m_StoppingDistance: 20
   m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
+  m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 22
   m_BaseOffset: 21.5
@@ -105,7 +105,7 @@ MonoBehaviour:
   fireRate: 1.5
   bulletSpeed: 50
   shootDistance: 150
---- !u!114 &7110824779509316623
+--- !u!114 &5441169666329221901
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -118,8 +118,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  deathEffect: {fileID: 459247903828008296, guid: 8680f58883a9b6447a58e5a60d3528ef, type: 3}
-  moveSpeed: 100
+  deathEffect: {fileID: 3275939365607441503, guid: 7fd4151f4ed30ca4b987fa356621b7fe, type: 3}
+  moveSpeed: 40
   health: 100
   damageAmount: 10
   pp: {fileID: 0}

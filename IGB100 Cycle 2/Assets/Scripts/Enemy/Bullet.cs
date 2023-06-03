@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float damageAmount = 10f;
+    //public float damageAmount = 10f;
     public float playerHealth;
 
     void update()
@@ -17,7 +17,7 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             //PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
-                SingletonParams.Instance.TakeDamage(5);
+                SingletonParams.Instance.TakeDamage(3);
                 Destroy(this.gameObject);
 
         }

@@ -25,13 +25,14 @@ public class FullDestruction : MonoBehaviour
     public AudioClip breaking1;
     public AudioClip breaking2;
     public AudioClip breaking3;
+    public AudioSource audioSource;
 
     private void Start()
     {
         buildingCol = GetComponent<Collider>();
 
-        
-        GetComponent<AudioSource>().playOnAwake = false;
+        audioSource = GetComponent<AudioSource>();
+        audioSource.playOnAwake = false;
     }
 
     void Update()
@@ -110,40 +111,40 @@ public class FullDestruction : MonoBehaviour
 
                 BHealth2 -= 33.0f;
                 //GetComponent<AudioSource>().Stop();
-                GetComponent<AudioSource>().clip = breaking1;
-                GetComponent<AudioSource>().Play();
+                //GetComponent<AudioSource>().clip = breaking1;
+                //GetComponent<AudioSource>().Play();
+                audioSource.PlayOneShot(breaking1, 0.2f);
             }
             else if (building2 && pp2.isAttking)
             {
                 BHealth2 -= 33.0f;
                 //GetComponent<AudioSource>().Stop();
-                GetComponent<AudioSource>().clip = breaking2;
-                GetComponent<AudioSource>().Play();
+                //GetComponent<AudioSource>().clip = breaking2;
+                //GetComponent<AudioSource>().Play();
+                audioSource.PlayOneShot(breaking2, 0.7f);
             }
             else if (building3 && pp2.isAttking)
             {
                 BHealth2 -= 33.0f;
 
                 //GetComponent<AudioSource>().Stop();
-                GetComponent<AudioSource>().clip = breaking3;
-                GetComponent<AudioSource>().Play();
+                //GetComponent<AudioSource>().clip = breaking3;
+                //GetComponent<AudioSource>().Play();
+                audioSource.PlayOneShot(breaking3, 1f);
             }
         }
 
         if (other.tag == "Laser" && building1)
         {
-            GetComponent<AudioSource>().clip = breaking1;
-            GetComponent<AudioSource>().Play();
+            audioSource.PlayOneShot(breaking1, 0.05f);
         }
         else if (other.tag == "Laser" && building2)
         {
-            GetComponent<AudioSource>().clip = breaking2;
-            GetComponent<AudioSource>().Play();
+            audioSource.PlayOneShot(breaking2, 0.7f);
         }
         else if (other.tag == "Laser" && building3)
         {
-            GetComponent<AudioSource>().clip = breaking3;
-            GetComponent<AudioSource>().Play();
+            audioSource.PlayOneShot(breaking3, 1f);
         }
 
 
