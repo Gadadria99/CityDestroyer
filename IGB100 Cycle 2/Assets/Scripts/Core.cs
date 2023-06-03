@@ -9,6 +9,7 @@ public class Core : MonoBehaviour
     public GameObject Orb;
     public PlayerPunch pp2;
     private Collider buildingCol;
+    public Collider buildingCol2;
     public bool building1 = true;
     public bool building2 = false;
     public bool building3 = false;
@@ -92,6 +93,7 @@ public class Core : MonoBehaviour
             if (dead)
             {
                 buildingCol.enabled = false;
+                buildingCol2.enabled = false;
             }
         }
     }
@@ -103,25 +105,28 @@ public class Core : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Fist" && building1 && pp2.isAttking)
+        if (ShieldScript.shieldDead)
         {
-            BHealth2 -= 5.0f;
-        }
-        else if (other.tag == "Fist" && building2 && pp2.isAttking)
-        {
-            BHealth2 -= 5.0f;
-        }
-        else if (other.tag == "Fist" && building3 && pp2.isAttking)
-        {
-            BHealth2 -= 5.0f;
-        }
-        else if (other.tag == "Fist" && building4 && pp2.isAttking)
-        {
-            BHealth2 -= 5.0f;
-        }
-        else if (other.tag == "Fist" && building5 && pp2.isAttking)
-        {
-            BHealth2 -= 5.0f;
+            if (other.tag == "Fist" && building1 && pp2.isAttking)
+            {
+                BHealth2 -= 7.0f;
+            }
+            else if (other.tag == "Fist" && building2 && pp2.isAttking)
+            {
+                BHealth2 -= 7.0f;
+            }
+            else if (other.tag == "Fist" && building3 && pp2.isAttking)
+            {
+                BHealth2 -= 7.0f;
+            }
+            else if (other.tag == "Fist" && building4 && pp2.isAttking)
+            {
+                BHealth2 -= 7.0f;
+            }
+            else if (other.tag == "Fist" && building5 && pp2.isAttking)
+            {
+                BHealth2 -= 7.0f;
+            }
         }
     }
 

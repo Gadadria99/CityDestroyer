@@ -40,6 +40,11 @@ public class FullDestruction : MonoBehaviour
         chance = Random.Range(0, 11);
         flip = Random.Range(0, 3);
 
+        if (building2 || building3 || building4)
+        { 
+            building1 = false;
+        }
+
         if (BHealth2 < 70.0f && BHealth2 >= 66.0f)
         {
             //Debug.Log("Health is: " + BHealth2);
