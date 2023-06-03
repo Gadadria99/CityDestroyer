@@ -52,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
 
     //sound
     public AudioSource audioScout;
+    public AudioSource audioScoutExit;
     //public AudioClip wheelSound;
     //public AudioClip wheelSoundExit;
     public KeyCode fwdKey = KeyCode.W;
@@ -80,15 +81,17 @@ public class PlayerMovement : MonoBehaviour
         Grow = SingletonParams.Instance.Grow;
 
 
-        //if (Input.GetKeyDown(fwdKey))
-        //{
-                
-        //        audioScout.Play();
-        //}
-        //else
-        //{
-        //    audioScout.Stop();
-        //}
+        if (Input.GetKeyDown(fwdKey))
+        {
+
+            audioScout.Play();
+        }
+        else if (Input.GetKeyUp(fwdKey))
+        {
+            audioScout.Stop();
+            audioScoutExit.Play();
+
+        }
 
 
         if (Grow == false)

@@ -88,7 +88,7 @@ public class GrowthController : MonoBehaviour
         else if (Grow == true)
         {
 
-            SingletonParams.Instance.energyDrain(5f);
+            SingletonParams.Instance.energyDrain(1f);
 
         }
 

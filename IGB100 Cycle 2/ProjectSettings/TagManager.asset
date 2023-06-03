@@ -11,6 +11,8 @@ TagManager:
   - Cannon
   - Laser
   - PlayerBody
+  - Cube
+  - PBody
   layers:
   - Default
   - TransparentFX

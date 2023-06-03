@@ -13,6 +13,7 @@ public class Enemy : MonoBehaviour
     public float health = 100.0f;
     public float damageAmount = 10f;
     bool exploded;
+    public PlayerPunch pp;
 
     void Start()
     {
@@ -29,23 +30,26 @@ public class Enemy : MonoBehaviour
         //}
     }
 
-    void FIxedUpdate()
+    //void FIxedUpdate()
+    //{
+
+    //}
+
+
+    // Update is called once per frame
+    void Update()
     {
+        
         try
         {
-            target = (GameObject.FindGameObjectWithTag("Player"));
+            target = (GameObject.FindGameObjectWithTag("PBody"));
 
         }
         catch
         {
             target = null;
         }
-    }
 
-
-    // Update is called once per frame
-    void Update()
-    {
         Movement();
     }
 
@@ -60,7 +64,7 @@ public class Enemy : MonoBehaviour
             direction.y = 0f; // ignore any vertical difference
 
             // The desired distance to keep from the player
-            float keepDistance = 5f;
+            float keepDistance = 10f;
 
             // Calculate the current distance from the player
             float currentDistance = direction.magnitude;
@@ -97,7 +101,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Fist"))
+        if (other.CompareTag("Fist") && pp.isAttking)
         {
             //PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
             //if (playerHealth != null)
@@ -105,7 +109,7 @@ public class Enemy : MonoBehaviour
             //    playerHealth.TakeDamage(damageAmount);
             //}
 
-            TakeDamage(20);
+            TakeDamage(50);
         }
 
 
@@ -115,7 +119,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.CompareTag("Laser"))
         {
-            health -= (5f * Time.deltaTime);
+            health -= (100f * Time.deltaTime);
             if (health <= 0 && exploded == false)
             {
 

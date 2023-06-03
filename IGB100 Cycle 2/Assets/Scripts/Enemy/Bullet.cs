@@ -17,8 +17,15 @@ public class Bullet : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             //PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
-                SingletonParams.Instance.TakeDamage(10);
-            
+                SingletonParams.Instance.TakeDamage(5);
+                Destroy(this.gameObject);
+
+        }
+
+        else if(!collision.gameObject.CompareTag("Player") && !collision.gameObject.CompareTag("Enemy"))
+        {
+            //Debug.Log("bullet destroyed");
+            Destroy(this.gameObject);
         }
     }
 }

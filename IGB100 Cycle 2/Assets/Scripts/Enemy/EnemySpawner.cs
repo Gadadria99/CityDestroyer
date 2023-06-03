@@ -5,10 +5,11 @@ using UnityEngine;
 public class EnemySpawner : MonoBehaviour
 {
     public GameObject enemyPrefab;
-    public int maxEnemies = 25;
-    public float initialSpawnInterval = 5f;
-    public float spawnIntervalDecreaseRate = 0.1f;
-    public float minSpawnInterval = 1f;
+    public int maxEnemies = 10;
+    public float initialSpawnInterval = 35f;
+    public float spawnIntervalDecreaseRate = 1f;
+    public float minSpawnInterval = 3f;
+    public ShieldGen ShieldScript;
 
     private int currentEnemies = 0;
     private float spawnInterval;
@@ -25,6 +26,13 @@ public class EnemySpawner : MonoBehaviour
 
         if (currentEnemies < maxEnemies && timer >= spawnInterval)
         {
+            SpawnEnemy();
+            timer = 0f;
+        }
+
+        else if(currentEnemies < maxEnemies && timer >= spawnInterval && ShieldScript.shieldDead == true)
+        {
+            SpawnEnemy();
             SpawnEnemy();
             timer = 0f;
         }

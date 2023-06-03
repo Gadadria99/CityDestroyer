@@ -32,7 +32,7 @@ public class SingletonParams : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        energyLevel = 60;
+        energyLevel = 90;
         currentHealth = maxHealth;
         deathMessageUI.SetActive(false);
     }
