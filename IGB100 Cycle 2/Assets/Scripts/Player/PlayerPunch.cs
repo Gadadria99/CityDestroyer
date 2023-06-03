@@ -60,13 +60,16 @@ public class PlayerPunch : MonoBehaviour
         { 
             Shoot();
             StartCoroutine(Laser());
+
             GetComponent<AudioSource>().clip = lazerSound;
+            GetComponent<AudioSource>().loop = true;
             GetComponent<AudioSource>().Play();
         }
         if (Input.GetMouseButtonUp(1))
         {
             isShooting = false;
             Destroy(laser);
+            GetComponent<AudioSource>().loop = false;
             GetComponent<AudioSource>().Stop();
             GetComponent<AudioSource>().clip = lazerSoundExit;
             GetComponent<AudioSource>().Play();
