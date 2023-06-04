@@ -10,6 +10,7 @@ public class CableConnet : MonoBehaviour
     public AudioClip EnergyChargeSound;
     public AudioClip chargeSoundExit;
     public GameObject Scout;
+    Collider Col;
      
     // Add your Audi Clip Here;
     // This Will Configure the  AudioSource Component; 
@@ -18,11 +19,16 @@ public class CableConnet : MonoBehaviour
     {
         GetComponent<AudioSource>().playOnAwake = false;
         //GetComponent<AudioSource>().clip = EnergyChargeSound;
+        Col = GetComponent<Collider>();
     }
 
     void Update()
     {
         Grow = SingletonParams.Instance.Grow;
+        if(Grow)
+        {
+            GetComponent<AudioSource>().Stop();
+        }
     }
 
     //Plays Sound Whenever collision detected
@@ -65,7 +71,7 @@ public class CableConnet : MonoBehaviour
 
     void OnTriggerExit(Collider other)
     {
-        if (other.transform.tag == "Player" && SingletonParams.Instance.Grow == false)
+        if (other.transform.tag == "Player"/* && SingletonParams.Instance.Grow == false*/)
         {
             //Destroy(EnergyChargeSound);
             //SoundFXManager.instance.PlaySoundFXClip(EnergyChargeSound, transform, 0.2f);
