@@ -20,6 +20,10 @@ public class FullDestruction : MonoBehaviour
     private float chance;
     public GameObject HP;
     public GameObject NRG;
+    public GameObject Fire;
+    public GameObject Smoke;
+    public GameObject Flame;
+    public bool exploded = false;
 
     [Header("sound")]
     public AudioClip breaking1;
@@ -94,6 +98,13 @@ public class FullDestruction : MonoBehaviour
         if (dead)
         {
             buildingCol.enabled = false;
+            if (exploded == false)
+            {
+                var rot = Quaternion.Euler(x: -90, y: 0, z: 0);
+                var p = Instantiate(Smoke, new Vector3(transform.position.x, 0, transform.position.z), rot);
+                Destroy(p, 5);
+                exploded = true;
+            }
         }
     }
 
@@ -185,6 +196,11 @@ public class FullDestruction : MonoBehaviour
                 {
                     Instantiate(NRG, new Vector3(transform.position.x, 32, transform.position.z), transform.rotation);
                 }
+
+                var p = Instantiate(Fire, transform.position, transform.rotation);
+                var f = Instantiate(Flame, new Vector3(transform.position.x, 0, transform.position.z), transform.rotation);
+                Destroy(p, 2);
+                Destroy(f, 4);
             }
             rolled = true;
         }

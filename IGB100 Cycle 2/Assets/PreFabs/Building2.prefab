@@ -94,6 +94,10 @@ MonoBehaviour:
   building4: 0
   HP: {fileID: 8826257781342117378, guid: 299962dcb2df67b498c1a14aee13ac13, type: 3}
   NRG: {fileID: 7185837210752937105, guid: a984351cb63eefb46a0921a0d5bf9a30, type: 3}
+  Fire: {fileID: 2001413798016891695, guid: 0a1976e7a14a2b243a2355c73865dde9, type: 3}
+  Smoke: {fileID: 3053114772864798372, guid: 6ab2c39f7911a244c91ac205dbbed811, type: 3}
+  Flame: {fileID: 3040521958013095470, guid: fdde648a1a40cc34094b875e903817bd, type: 3}
+  exploded: 0
   breaking1: {fileID: 8300000, guid: 6ddcf87be2d70924688d5a48d73f8a59, type: 3}
   breaking2: {fileID: 8300000, guid: 6659dcbaf9497384d82a7309d2b7ed23, type: 3}
   breaking3: {fileID: 8300000, guid: 0c52a9b72a438ca46a7322b0d39b428c, type: 3}

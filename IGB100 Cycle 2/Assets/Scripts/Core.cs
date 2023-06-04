@@ -19,13 +19,13 @@ public class Core : MonoBehaviour
     public bool orb = false;
     private bool dead = false;
 
-   // public ShieldGen ShieldScript;
     public ShieldGen ShieldScript;
     public GameObject Shield;
     //public bool shieldDead;
 
     public GameObject End;
     public Orb orbScript;
+    public bool On = false;
 
 
     //[Header("sound")]
@@ -65,6 +65,13 @@ public class Core : MonoBehaviour
         { 
             Destroy(Shield);
             Debug.Log("SHIELD DOWN");
+            if (!On)
+            {
+                buildingCol.enabled = true;
+                buildingCol2.enabled = true;
+                On = true;
+            }
+
         }
 
 
@@ -92,8 +99,9 @@ public class Core : MonoBehaviour
             orb = true;
             buildinglist[2].SetActive(false);
             buildinglist[3].SetActive(true);
+            buildingCol2.enabled = false;
             Orb.SetActive(true);
-            
+
         }
         else if (BHealth2 < 20.0f && BHealth2 > 0.0f)
         {
@@ -101,7 +109,7 @@ public class Core : MonoBehaviour
             building5 = true;
             buildinglist[3].SetActive(false);
             buildinglist[4].SetActive(true);
-            
+
         }
         else if (BHealth2 <= 0.0f)
         {
@@ -115,7 +123,6 @@ public class Core : MonoBehaviour
             if (dead)
             {
                 buildingCol.enabled = false;
-                buildingCol2.enabled = false;
             }
         }
     }
@@ -158,23 +165,23 @@ public class Core : MonoBehaviour
         {
             if (other.tag == "Laser" && building1)
             {
-                BHealth2 -= 0.05f;
+                BHealth2 -= 0.1f;
             }
             else if (other.tag == "Laser" && building2)
             {
-                BHealth2 -= 0.05f;
+                BHealth2 -= 0.1f;
             }
             else if (other.tag == "Laser" && building3)
             {
-                BHealth2 -= 0.05f;
+                BHealth2 -= 0.1f;
             }
             else if (other.tag == "Laser" && building4)
             {
-                BHealth2 -= 0.05f;
+                BHealth2 -= 0.1f;
             }
             else if (other.tag == "Laser" && building5)
             {
-                BHealth2 -= 0.05f;
+                BHealth2 -= 0.1f;
             }
         }
     }
@@ -184,6 +191,8 @@ public class Core : MonoBehaviour
         yield return new WaitForSeconds(2);
         End.SetActive(true);
         Time.timeScale = 0.0f;
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 }
 

@@ -15,6 +15,7 @@ public class Orb : MonoBehaviour
 
     public GameObject fire;
     public GameObject plasma;
+    public GameObject cosmic;
     public bool exploded = false;
 
     public float rotateSpeed;
@@ -75,13 +76,16 @@ public class Orb : MonoBehaviour
 
         if (dead)
         {
+            SingletonParams.Instance.currentHealth = 100;
             buildingCol.enabled = false;
             if (exploded == false)
             {
                 var f = Instantiate(fire, transform.position, transform.rotation);
                 var p = Instantiate(plasma, transform.position, transform.rotation);
+                var c = Instantiate(cosmic, transform.position, transform.rotation);
                 Destroy(f, 4);
                 Destroy(p, 4);
+                Destroy(c, 5);
                 exploded = true;
             }
             Destroy(gameObject);

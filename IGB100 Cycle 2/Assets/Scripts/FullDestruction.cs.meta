@@ -3,7 +3,16 @@ guid: 80a92c195d7547c49ac184b071d103c6
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - pp2: {instanceID: 0}
+  - HP: {instanceID: 0}
+  - NRG: {instanceID: 0}
+  - Fire: {fileID: 2001413798016891695, guid: 0a1976e7a14a2b243a2355c73865dde9, type: 3}
+  - Smoke: {fileID: 3053114772864798372, guid: 6ab2c39f7911a244c91ac205dbbed811, type: 3}
+  - breaking1: {instanceID: 0}
+  - breaking2: {instanceID: 0}
+  - breaking3: {instanceID: 0}
+  - audioSource: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
